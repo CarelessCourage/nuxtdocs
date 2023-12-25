@@ -92,7 +92,14 @@ onMounted(() => {
           </ProseP>
         </UCard>
 
-        <UCard> lolers </UCard>
+        <UCard>
+          <ProseCode
+            code=" export default () => {
+              console.log('Code block')
+            }"
+          />
+          lolers
+        </UCard>
       </div>
       <UCard>
         <ProseP>
@@ -181,7 +188,6 @@ onMounted(() => {
 
 .her .showcase {
   display: flex;
-  flex-direction: column;
   gap: 2rem;
 }
 </style>
