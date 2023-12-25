@@ -17,6 +17,10 @@ defineOgImage({
 
 <template>
   <div>
+    <UContainer>
+      <Hero />
+    </UContainer>
+
     <ULandingHero v-if="page.hero" v-bind="page.hero">
       <template #title>
         <MDC :value="page.hero.title" />

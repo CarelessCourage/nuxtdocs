@@ -8,19 +8,32 @@ export default <Partial<Config>>{
         sans: ['DM Sans', 'DM Sans fallback', ...defaultTheme.fontFamily.sans]
       },
       colors: {
-        green: {
-          50: '#EFFDF5',
-          100: '#D9FBE8',
-          200: '#B3F5D1',
-          300: '#75EDAE',
-          400: '#00DC82',
-          500: '#00C16A',
-          600: '#00A155',
-          700: '#007F45',
-          800: '#016538',
-          900: '#0A5331',
-          950: '#052e16'
-        }
+        // base: {
+        //   50: 'var(--base)',
+        //   100: 'var(--base-10)',
+        //   200: 'var(--base-20)',
+        //   300: 'var(--base-30)',
+        //   400: 'var(--base-40)',
+        //   500: 'var(--base-50)',
+        //   600: 'var(--base-60)',
+        //   700: 'var(--base-70)',
+        //   800: 'var(--base-90)',
+        //   900: 'var(--base-110)',
+        //   950: 'var(--base-120)'
+        // },
+        // accent: {
+        //   50: 'var(--accent-10)',
+        //   100: 'var(--accent-20)',
+        //   200: 'var(--accent-40)',
+        //   300: 'var(--accent-50)',
+        //   400: 'var(--accent-60)',
+        //   500: 'var(--accent-70)',
+        //   600: 'var(--accent-80)',
+        //   700: 'var(--accent-90)',
+        //   800: 'var(--accent-100)',
+        //   900: 'var(--accent-110)',
+        //   950: 'var(--accent-120)'
+        // }
       }
     }
   }

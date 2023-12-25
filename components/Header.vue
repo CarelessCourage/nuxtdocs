@@ -16,7 +16,7 @@ const logo = computed(() => colorMode.value === 'dark' ? header?.logo?.dark : he
         <img v-bind="{ class: 'h-6 w-auto', ...logo }">
       </template>
       <template v-else>
-        Nuxt UI Pro <UBadge label="Docs" variant="subtle" class="mb-0.5" />
+        Umbra <UBadge label="Docs" variant="subtle" class="mb-0.5" />
       </template>
     </template>
 
