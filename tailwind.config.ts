@@ -1,11 +1,11 @@
-import type { Config } from 'tailwindcss'
-import defaultTheme from 'tailwindcss/defaultTheme'
+import type { Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default <Partial<Config>>{
   theme: {
     extend: {
       fontFamily: {
-        sans: ['DM Sans', 'DM Sans fallback', ...defaultTheme.fontFamily.sans]
+        sans: ["DM Sans", "DM Sans fallback", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         // base: {
@@ -34,7 +34,7 @@ export default <Partial<Config>>{
         //   900: 'var(--accent-110)',
         //   950: 'var(--accent-120)'
         // }
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
