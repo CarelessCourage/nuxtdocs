@@ -63,67 +63,82 @@ onMounted(() => {
     <div ref="logo" class="umbra-logo">
       <Logo />
     </div>
-    <UCard>
-      <div ref="content" class="content">
+    <div ref="content" class="content">
+      <UCard>
         <ProseP>A theme management library to rule them all</ProseP>
-        <ProseP>
-          Makes it easy to modify and manage your theme. Switch between themes.
-          Change theme. Automatic dark/light mode. Monitor theme accessibility
-          against cutting edge color contrast standards
-          <ULink
-            to="https://www.myndex.com/"
-            active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-          >
-            (APCA).
-          </ULink>
-          Perfect parity with
+      </UCard>
+      <div class="showcase">
+        <UCard>
+          <ProseP>
+            Makes it easy to modify and manage your theme. Switch between
+            themes. Change theme. Automatic dark/light mode. Monitor theme
+            accessibility against cutting edge color contrast standards
+            <ULink
+              to="https://www.myndex.com/"
+              active-class="text-primary"
+              inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+            >
+              (APCA).
+            </ULink>
+            Perfect parity with
 
-          <ULink
-            to="https://www.radix-ui.com/colors"
-            active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-          >
-            radix-colors.
-          </ULink>
-        </ProseP>
+            <ULink
+              to="https://www.radix-ui.com/colors"
+              active-class="text-primary"
+              inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+            >
+              radix-colors.
+            </ULink>
+          </ProseP>
+        </UCard>
+
+        <UCard> lolers </UCard>
+      </div>
+      <UCard>
         <ProseP>
           Start simple and scale theme complexity infinitely without any
           friction. You can decide to theme every element on your site
           differently at a moments notice without any need to reorganize
           anything at all. Just plug and play. Scale to infinity.
         </ProseP>
+      </UCard>
+      <UCard>
         <ProseP>
           Boss-man randomly wants to be able to dynamically change the color of
           that one card? Done. Need more extreme variant in theming
           customisations? Then use a color alias layer that lets you get as
           complex as you want.
         </ProseP>
+      </UCard>
+      <UCard>
         <ProseP>
           Or keep it all super simple, umbra lets you manage it all from a
           single source and very quickly. Change a color and watch the other
           colors adjust themselves to your change instead of having to manually
           shift everything every time you need to change something.
         </ProseP>
+      </UCard>
+      <UCard>
         <ProseP>
           It's more than just a theme generator, its a theme manager. The
           generation part is just the backdrop that makes adjustments quick and
           easy to do. You can can manually dictate everything yourself if and
           when you need to.
         </ProseP>
+      </UCard>
+      <UCard>
         <ProseP>
-          Start simple, get as complex as you want, scale infinitely. And if you
-          decide you no longer want Umbra, removing it is as easy as copying the
-          output and pasting it yourself. You are never locked into this
-          library. This way Umbra will always be a safe bet for the future.
+          If you decide you no longer want Umbra, removing it is as easy as
+          copying the output and pasting it yourself. You are never locked into
+          this library. This way Umbra will always be a safe bet for the future.
         </ProseP>
-      </div>
-    </UCard>
+      </UCard>
+    </div>
   </div>
   <div ref="circle" class="circle" />
-  <Ellipsis size="40rem" class="absolute -top-72 -left-48" />
+  <!-- <Ellipsis size="40rem" class="absolute -top-72 -left-48" />
   <Ellipsis size="60rem" class="absolute -bottom-32 -right-56" />
-  <Ellipsis size="40rem" z-index="0" class="absolute" />
+  <Ellipsis size="40rem" z-index="0" class="absolute" /> -->
 </template>
 
 <style scoped lang="scss">
@@ -159,8 +174,14 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-bottom: 25px;
+  //padding-bottom: 25px;
   max-inline-size: 50ch;
   text-wrap: balance;
+}
+
+.her .showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 </style>
