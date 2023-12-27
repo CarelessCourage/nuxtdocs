@@ -57,7 +57,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-@import "./css";
+//@import "./css";
 
 :root {
   --color-primary-50: 239 253 245;
