@@ -27,6 +27,15 @@ umbra({
   accents: ["#ff0000", "#0000ff"],
 }).apply({ element: footer });`);
 
+const invertTheme = highlight(` const theme = umbra({
+    foreground: "#ffffff",
+    background: "#000000",
+    accents: ["#ff0000", "#0000ff"],
+  });
+
+  //Convert to dark theme
+  theme.inverse().apply();`);
+
 const simpleOutput = highlight(
   `:root {
   --base: #000000;
@@ -133,7 +142,7 @@ onMounted(() => {
         </ProseP>
       </Showcase>
 
-      <Showcase :code="simpleUmbra">
+      <Showcase :code="invertTheme">
         <ProseP>
           Makes it easy to modify and manage your theme. Switch between themes.
           Change theme. Automatic dark/light mode. Monitor theme accessibility

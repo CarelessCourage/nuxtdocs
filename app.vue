@@ -29,8 +29,10 @@ onMounted(() => {
   const theme = umbra({
     foreground: "#ffffff",
     background: "#000000",
-    accents: ["#ff0000", "#0000ff"],
-  }).apply();
+    accents: ["#ff0000"],
+  }).apply({
+    formater: rgbStrippedFormat,
+  });
 
   console.log(theme);
 });
@@ -60,29 +62,68 @@ onMounted(() => {
 //@import "./css";
 
 :root {
-  --color-primary-50: 239 253 245;
-  --color-primary-100: 217 251 232;
-  --color-primary-200: 179 245 209;
-  --color-primary-300: 117 237 174;
-  --color-primary-400: 0 220 130;
-  --color-primary-500: 0 193 106;
-  --color-primary-600: 0 161 85;
-  --color-primary-700: 0 127 69;
-  --color-primary-800: 1 101 56;
-  --color-primary-900: 10 83 49;
-  --color-primary-950: 5 46 22;
+  --inner-radius: 3px;
+  --radius: 10px;
+  --outer-radius: calc(var(--radius) + var(--space-s));
+}
+
+:root {
+  --base: 0 0 0;
+  --base-10: 17 17 17;
+  --base-20: 37 37 37;
+  --base-30: 55 55 55;
+  --base-40: 72 72 72;
+  --base-50: 114 114 114;
+  --base-60: 147 147 147;
+  --base-70: 173 173 173;
+  --base-80: 193 193 193;
+  --base-90: 220 220 220;
+  --base-100: 236 236 236;
+  --base-110: 245 245 245;
+  --base-120: 249 249 249;
+  --base-contrast: 255 255 255;
+
+  --accent: 255 0 0;
+  --accent-10: 20 6 2;
+  --accent-20: 40 16 5;
+  --accent-30: 58 20 8;
+  --accent-40: 75 23 10;
+  --accent-50: 116 27 12;
+  --accent-60: 255 0 0;
+  --accent-70: 255 105 69;
+  --accent-80: 255 146 113;
+  --accent-90: 255 196 175;
+  --accent-100: 255 223 210;
+  --accent-110: 255 237 230;
+  --accent-120: 255 245 241;
+  --accent-contrast: 255 255 255;
+}
+
+:root {
+  --color-gray-50: var(--base-120);
+  --color-gray-100: var(--base-110);
+  --color-gray-200: var(--base-90);
+  --color-gray-300: var(--base-70);
+  --color-gray-400: var(--base-60);
+  --color-gray-500: var(--base-50);
+  --color-gray-600: var(--base-40);
+  --color-gray-700: var(--base-30);
+  --color-gray-800: var(--base-20);
+  --color-gray-900: var(--base-10);
+  --color-gray-950: var(--base);
+
+  --color-primary-50: var(--accent-120);
+  --color-primary-100: var(--accent-110);
+  --color-primary-200: var(--accent-100);
+  --color-primary-300: var(--accent-90);
+  --color-primary-400: var(--accent-80);
+  --color-primary-500: var(--accent-60);
+  --color-primary-600: var(--accent-50);
+  --color-primary-700: var(--accent-40);
+  --color-primary-800: var(--accent-30);
+  --color-primary-900: var(--accent-20);
+  --color-primary-950: var(--accent-10);
   --color-primary-DEFAULT: var(--color-primary-500);
-  --color-gray-50: 249 250 251;
-  --color-gray-100: 243 244 246;
-  --color-gray-200: 229 231 235;
-  --color-gray-300: 209 213 219;
-  --color-gray-400: 156 163 175;
-  --color-gray-500: 107 114 128;
-  --color-gray-600: 75 85 99;
-  --color-gray-700: 55 65 81;
-  --color-gray-800: 31 41 55;
-  --color-gray-900: 17 24 39;
-  --color-gray-950: 3 7 18;
 }
 
 html {

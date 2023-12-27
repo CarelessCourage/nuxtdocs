@@ -9,7 +9,10 @@ defineProps<{
     <UCard>
       <slot />
     </UCard>
-    <Code :code="code" />
+    <div class="u-truncated">
+      <div class="veil" />
+      <Code :code="code" />
+    </div>
   </div>
 </template>
 
@@ -18,5 +21,22 @@ defineProps<{
   display: flex;
   flex-direction: column;
   gap: 0rem;
+}
+
+.u-truncated {
+  position: relative;
+  max-height: 202px;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.veil {
+  position: absolute;
+  bottom: -90px;
+  width: 100%;
+  height: 40px;
+  background-color: var(--base);
+  box-shadow: 0px -40px 60px 60px var(--base);
+  opacity: 0.8;
 }
 </style>
