@@ -211,7 +211,7 @@ onMounted(() => {
       </Showcase>
     </div>
   </div>
-  <div ref="circle" class="circle" />
+  <Circle ref="circle" />
   <!-- <Ellipsis size="40rem" class="absolute -top-72 -left-48" />
   <Ellipsis size="60rem" class="absolute -bottom-32 -right-56" />
   <Ellipsis size="40rem" z-index="0" class="absolute" /> -->
@@ -221,19 +221,6 @@ onMounted(() => {
 .umbra-logo {
   width: 8rem;
   padding: 100px 0px;
-}
-
-.circle {
-  --color: rgb(var(--base-20) / 1);
-  position: absolute;
-  z-index: 20;
-  left: 0px;
-  top: -90vw;
-  height: 100vw;
-  width: 100vw;
-  background: var(--color);
-  border-radius: 60rem;
-  box-shadow: 0px 100px 150px 47px var(--color);
 }
 
 .hero {

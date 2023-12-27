@@ -1,19 +1,21 @@
 <script setup lang="ts">
-import type { NavItem } from '@nuxt/content/dist/runtime/types'
+import type { NavItem } from "@nuxt/content/dist/runtime/types";
 
-const navigation = inject<NavItem[]>('navigation', [])
+const navigation = inject<NavItem[]>("navigation", []);
 
-const { header } = useAppConfig()
-const colorMode = useColorMode()
+const { header } = useAppConfig();
+const colorMode = useColorMode();
 
-const logo = computed(() => colorMode.value === 'dark' ? header?.logo?.dark : header?.logo?.light)
+const logo = computed(() =>
+  colorMode.value === "dark" ? header?.logo?.dark : header?.logo?.light
+);
 </script>
 
 <template>
   <UHeader>
     <template #logo>
       <template v-if="logo?.src">
-        <img v-bind="{ class: 'h-6 w-auto', ...logo }">
+        <img v-bind="{ class: 'h-6 w-auto', ...logo }" />
       </template>
       <template v-else>
         Umbra <UBadge label="Docs" variant="subtle" class="mb-0.5" />
@@ -25,7 +27,11 @@ const logo = computed(() => colorMode.value === 'dark' ? header?.logo?.dark : he
     </template>
 
     <template #right>
-      <UDocsSearchButton v-if="header?.search" :label="null" class="lg:hidden" />
+      <UDocsSearchButton
+        v-if="header?.search"
+        :label="null"
+        class="lg:hidden"
+      />
 
       <UColorModeButton v-if="header?.colorMode" />
 

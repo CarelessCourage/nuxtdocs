@@ -8,15 +8,19 @@
 </template>
 
 <style scoped>
+#logo {
+  --color: rgb(var(--base-contrast) / 1);
+}
+
 #logo .main-circle {
   fill: none;
-  stroke: var(--base-120);
+  stroke: var(--color);
   stroke-miterlimit: 2;
   stroke-width: 26px;
 }
 
 #logo .moon-circle {
-  fill: var(--base-120);
+  fill: var(--color);
   stroke-width: 0px;
 }
 </style>
