@@ -2,24 +2,13 @@
 import type { NavItem } from "@nuxt/content/dist/runtime/types";
 
 const navigation = inject<NavItem[]>("navigation", []);
-
 const { header } = useAppConfig();
-const colorMode = useColorMode();
-
-const logo = computed(() =>
-  colorMode.value === "dark" ? header?.logo?.dark : header?.logo?.light
-);
 </script>
 
 <template>
   <UHeader>
     <template #logo>
-      <template v-if="logo?.src">
-        <img v-bind="{ class: 'h-6 w-auto', ...logo }" />
-      </template>
-      <template v-else>
-        Umbra <UBadge label="Docs" variant="subtle" class="mb-0.5" />
-      </template>
+      Umbra <UBadge label="Docs" variant="subtle" class="mb-0.5" />
     </template>
 
     <template v-if="header?.search" #center>
@@ -33,15 +22,13 @@ const logo = computed(() =>
         class="lg:hidden"
       />
 
-      <UColorModeButton v-if="header?.colorMode" />
+      <InverseButton />
 
-      <template v-if="header?.links">
-        <UButton
-          v-for="(link, index) of header.links"
-          :key="index"
-          v-bind="{ color: 'gray', variant: 'ghost', ...link }"
-        />
-      </template>
+      <UButton
+        v-for="(link, index) of header.links"
+        :key="index"
+        v-bind="{ color: 'gray', variant: 'ghost', ...link }"
+      />
     </template>
 
     <template #panel>

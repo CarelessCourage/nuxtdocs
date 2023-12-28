@@ -15,8 +15,8 @@ dependencies:
     specifier: ^0.4.1
     version: 0.4.1
   '@umbrajs/core':
-    specifier: ^0.0.28
-    version: 0.0.28
+    specifier: ^0.0.3
+    version: 0.0.3
   gsap:
     specifier: npm:@gsap/shockingly@^3.12.2
     version: /@gsap/shockingly@3.12.2
@@ -2454,8 +2454,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@umbrajs/core@0.0.28:
-    resolution: {integrity: sha512-DV+HcrXhcZ8PVLStkHH4zmZHqCeWH5A0naoSyH5jWlyRgrSH/ynBknGgPfTrPSpQVM3oDLVZhE6rw8e/OlQ7SQ==}
+  /@umbrajs/core@0.0.3:
+    resolution: {integrity: sha512-Rcj2kr0YEfg+EDy5ky7FGKPxBw2fErL0Ny84uJ+sEHk+/Wce4kPcHpI6BpPoebZ2+JbEbfbOTnKMWrA2HBYfNg==}
     dependencies:
       apca-w3: 0.1.9
       colord: 2.9.3
