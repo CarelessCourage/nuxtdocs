@@ -30,7 +30,9 @@ onMounted(() => {
     foreground: "#ffffff",
     background: "#000000",
     accents: ["#ff0000"],
-  }).apply({
+  });
+
+  theme.apply({
     formater: rgbStrippedFormat,
   });
 

@@ -22,7 +22,7 @@ const logo = computed(() =>
       </template>
     </template>
 
-    <template v-if="header?.search" #center>
+    <template #center>
       <UDocsSearchButton class="hidden lg:flex" />
     </template>
 
@@ -33,15 +33,13 @@ const logo = computed(() =>
         class="lg:hidden"
       />
 
-      <UColorModeButton v-if="header?.colorMode" />
+      <ColorModeButton />
 
-      <template v-if="header?.links">
-        <UButton
-          v-for="(link, index) of header.links"
-          :key="index"
-          v-bind="{ color: 'gray', variant: 'ghost', ...link }"
-        />
-      </template>
+      <UButton
+        v-for="(link, index) of header.links"
+        :key="index"
+        v-bind="{ color: 'gray', variant: 'ghost', ...link }"
+      />
     </template>
 
     <template #panel>

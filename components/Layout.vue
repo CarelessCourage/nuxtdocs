@@ -1,13 +1,4 @@
-<script setup lang="ts">
-const { config } = useDocus()
-
-useHead({
-  titleTemplate: config.value.titleTemplate,
-  meta: [{ name: 'twitter:card', content: 'summary_large_image' }]
-})
-
-useContentHead(config.value as any)
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="app-layout">
