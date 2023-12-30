@@ -8,7 +8,8 @@ const { header } = useAppConfig();
 <template>
   <UHeader>
     <template #logo>
-      Umbra <UBadge label="Docs" variant="subtle" class="mb-0.5" />
+      <h1 class="text-gray-50">Umbra</h1>
+      <UBadge label="Docs" variant="subtle" class="mb-0.5" />
     </template>
 
     <template v-if="header?.search" #center>

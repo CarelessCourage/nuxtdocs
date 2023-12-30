@@ -6,17 +6,14 @@ defineOptions({
   inheritAttrs: false,
 });
 
-//const colorMode = useColorMode();
 const appConfig = useAppConfig();
-
+const colorMode = useColorMode();
 const theme = useTheme();
 
 function inverse() {
-  //fix inversion and make sure it has good types
-  const test = umbra(theme.value.scheme)
+  theme.value = umbra(theme.value.scheme)
     .inverse()
-    .apply({ formater: rgbStrippedFormat });
-  theme.value = test.input;
+    .apply({ formater: rgbStrippedFormat }).input;
 }
 
 const isDark = computed(() => {
