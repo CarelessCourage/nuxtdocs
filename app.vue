@@ -34,7 +34,15 @@ onMounted(() => {
     formater: rgbStrippedFormat,
   });
 
-  console.log(theme);
+  const theme2 = umbra({
+    foreground: "#ffffff",
+    background: "#000000",
+    accents: ["#ff0000"],
+  }).apply({
+    formater: rgbStrippedFormat,
+  });
+
+  console.log("rezx", JSON.parse(JSON.stringify(theme2.output)));
 });
 </script>
 

@@ -1,21 +1,27 @@
 <script setup lang="ts">
-//import { useTheme, storedTheme } from "../composables/useTheme";
+import { umbra, rgbStrippedFormat, isDark as isDarkColor } from "@umbrajs/core";
+import { useTheme } from "../composables/useTheme";
 
 defineOptions({
   inheritAttrs: false,
 });
 
-const colorMode = useColorMode();
+//const colorMode = useColorMode();
 const appConfig = useAppConfig();
 
-//const theme = useTheme();
+const theme = useTheme();
 
 function inverse() {
-  //const inverse = theme.inverse().apply();
-  //storedTheme.value = inverse.output;
+  //fix inversion and make sure it has good types
+  const test = umbra(theme.value.scheme)
+    .inverse()
+    .apply({ formater: rgbStrippedFormat });
+  theme.value = test.input;
 }
 
-const isDark = false;
+const isDark = computed(() => {
+  return isDarkColor(theme.value);
+});
 </script>
 
 <template>
