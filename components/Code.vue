@@ -9,7 +9,6 @@ defineProps<{
 </script>
 
 <template>
-  lol
   <div class="prose code" v-html="code" />
 </template>
 
