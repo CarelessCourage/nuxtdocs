@@ -2,6 +2,7 @@ import { getHighlighter } from "shikiji";
 
 const highlighter = await getHighlighter();
 await highlighter.loadLanguage("javascript");
+await highlighter.loadLanguage("typescript");
 await highlighter.loadLanguage("css");
 await highlighter.loadTheme("dracula");
 

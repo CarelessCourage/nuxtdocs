@@ -69,6 +69,15 @@ onMounted(() => {
 <style lang="scss">
 //@import "./css";
 
+h1,
+a {
+  color: rgb(var(--base-contrast) / 1) !important;
+}
+
+code {
+  //background-color: red !important;
+}
+
 :root {
   --inner-radius: 3px;
   --radius: 10px;

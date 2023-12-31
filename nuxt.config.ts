@@ -28,4 +28,13 @@ export default defineNuxtConfig({
   // Devtools / Typescript
   devtools: { enabled: true },
   typescript: { strict: false },
+  content: {
+    highlight: {
+      theme: {
+        default: "github-light",
+        dark: "github-dark",
+        //sepia: "monokai",
+      },
+    },
+  },
 });
