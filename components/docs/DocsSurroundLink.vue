@@ -3,7 +3,7 @@ import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
 
 const config = {
   wrapper:
-    "block px-6 py-8 border not-prose rounded-lg border-gray-800 hover:bg-gray-100/50 group",
+    "block px-6 py-8 border not-prose rounded-lg border-gray-800 hover:bg-gray-800/30 group",
   icon: {
     wrapper:
       "inline-flex items-center rounded-full p-1.5 bg-gray-800 group-hover:bg-primary/10 ring-1 ring-gray-900 mb-4 group-hover:ring-primary/50",

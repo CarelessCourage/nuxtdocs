@@ -71,14 +71,14 @@ const groups = computed<LinkGroup[]>(() => {
 <template>
   <nav v-if="groups?.length" :class="ui.wrapper" v-bind="attrs">
     <template v-for="(group, index) in groups" :key="index">
-      <UNavigationAccordion
+      <NavigationAccordion
         v-if="group.type === 'accordion'"
         :links="group.children"
         :level="level"
         :multiple="multiple"
         :default-open="defaultOpen"
       />
-      <UNavigationLinks v-else :links="group.children" :level="level" />
+      <NavigationLinks v-else :links="group.children" :level="level" />
     </template>
   </nav>
 </template>

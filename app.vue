@@ -71,7 +71,7 @@ onMounted(() => {
 
 h1,
 a {
-  color: rgb(var(--base-contrast) / 1) !important;
+  color: rgb(var(--base-contrast) / 1);
 }
 
 code {
