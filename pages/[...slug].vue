@@ -69,7 +69,7 @@ const links = computed(() =>
 
       <hr v-if="surround?.length" />
 
-      <UDocsSurround :surround="surround" />
+      <DocsSurround :surround="surround" />
     </UPageBody>
 
     <template v-if="page.toc !== false" #right>
