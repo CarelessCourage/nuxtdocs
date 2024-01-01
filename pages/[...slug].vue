@@ -57,7 +57,7 @@ const links = computed(() =>
 
 <template>
   <UPage>
-    <UPageHeader
+    <PageHeader
       :title="page.title"
       :description="page.description"
       :links="page.links"

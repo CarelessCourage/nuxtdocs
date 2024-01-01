@@ -2,12 +2,11 @@
 import type { Button } from "#ui/types";
 
 const config = {
-  wrapper: "relative border-b border-gray-200 dark:border-gray-800 py-8",
+  wrapper: "relative border-b border-gray-200 py-8",
   container: "flex flex-col lg:flex-row lg:items-center lg:justify-between",
   headline: "mb-4 text-sm font-semibold text-primary flex items-center gap-1.5",
-  title:
-    "text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight",
-  description: "mt-4 text-lg text-gray-500 dark:text-gray-400",
+  title: "text-3xl sm:text-4xl font-bold text-gray-100 tracking-tight",
+  description: "mt-4 text-lg text-gray-500",
   icon: {
     wrapper: "flex",
     base: "w-10 h-10 flex-shrink-0 text-primary",
