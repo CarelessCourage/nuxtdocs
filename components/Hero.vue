@@ -63,7 +63,7 @@ const theme = umbra({
 `);
 
 const formatTheme = highlight(`umbra(lightTheme).apply({
-  formater: (color) => {
+  formater: (colord) => {
     return color.toHslString();
   },
 })
@@ -394,20 +394,23 @@ const formated = [
 
 const umbraReturns = highlight(`//All options returned when umbra() is called
 const {
+  //data
   input: {/*inputed theme values*/},
-  output: {/*inputs generates an output*/},
+  output: {/*input generates an output*/},
+  //actions
   apply: () => /*format and then apply output to document*/,
   format: () => /*format the output into a usefull shape*/,
   inverse: () => /*inverse the theme - dark/light*/,
   isDark: () => /*check if the theme is dark, return boolean*/,
 } = umbra(lightTheme)`);
 
-const applyReturns = highlight(`//All options returned when apply() is called
+const applyReturns =
+  highlight(`//All options returned when apply() or format() is called
 const {
   input: {/*inputed theme values*/},
   output: {/*inputs generates an output*/},
-  formated: {/*output gets formated to correct color formats*/},
-  flattened: {/*formated gets flattened for easy iteration*/},
+  formated: {/*output colors gets formated*/},
+  flattened: {/*formated theme gets flattened for easy iteration*/},
 } = umbra(lightTheme).apply()`);
 
 const outputExample = [
@@ -427,7 +430,7 @@ const optionsExample = [
     code: umbraReturns,
   },
   {
-    label: "Apply",
+    label: "Apply/Format",
     code: applyReturns,
   },
 ];
@@ -573,8 +576,8 @@ const tailwindExample = [
       <Showcase :tabs="outputExample">
         <ProseP class="tracking-wide font-bold">Output</ProseP>
         <ProseP>
-          Generated output is a standardised collection of CSS variables. The
-          pattern itself stays consistent regardless of the theme and all
+          The generated output is a standardised collection of CSS variables.
+          The pattern itself stays consistent regardless of the theme and all
           results are adjusted against the background colors to meet
           <ULink
             to="https://www.myndex.com/"
@@ -651,6 +654,19 @@ const tailwindExample = [
         </ProseP>
       </Showcase>
 
+      <Showcase :code="formatTheme">
+        <ProseP class="tracking-wide font-bold">Formating</ProseP>
+        <ProseP>
+          Format your colors however you want. Defaults to plain hex color.
+          Umbra uses
+          <ProseA to="https://github.com/omgovich/colord"> colord </ProseA>
+          to handle color manipulation. Its a tiny library and using it gives
+          you all the power to do whatever you need with the color. colord comes
+          with multiple extentions and I reccomend using it alongside umbra if
+          you need more color tools.
+        </ProseP>
+      </Showcase>
+
       <Showcase :tabs="tailwindExample">
         <ProseP class="tracking-wide font-bold">Tailwind</ProseP>
         <ProseP>
@@ -660,11 +676,8 @@ const tailwindExample = [
         </ProseP>
       </Showcase>
 
-      <Showcase :code="formatTheme">
-        <ProseP> Format your colors however you want </ProseP>
-      </Showcase>
-
       <Showcase :code="scaleCode">
+        <ProseP class="tracking-wide font-bold">Scale Complexity</ProseP>
         <ProseP>
           Start simple and scale theme complexity infinitely without any
           friction. You can decide to theme every element on your site
@@ -674,22 +687,15 @@ const tailwindExample = [
       </Showcase>
 
       <Showcase :code="simpleUmbra">
+        <ProseP class="tracking-wide font-bold">More Extreme Themes</ProseP>
         <ProseP>
           Need more extreme variant in theming customisations? Then use a color
           alias layer that lets you get as complex as you want.
         </ProseP>
       </Showcase>
 
-      <Showcase :code="simpleUmbra">
-        <ProseP>
-          Or keep it all super simple, umbra lets you manage it all from a
-          single source and very quickly. Change a color and watch the other
-          colors adjust themselves to your change instead of having to manually
-          shift everything every time you need to change something.
-        </ProseP>
-      </Showcase>
-
       <Showcase :code="manualTheme">
+        <ProseP class="tracking-wide font-bold">Full Control</ProseP>
         <ProseP>
           It's more than just a theme generator, its a theme manager. The
           generation part is just the backdrop that makes adjustments quick and
@@ -699,6 +705,7 @@ const tailwindExample = [
       </Showcase>
 
       <Showcase :code="lockTheme">
+        <ProseP class="tracking-wide font-bold">No Lockin</ProseP>
         <ProseP>
           If you decide you no longer want Umbra, removing it is as easy as
           copying the output and pasting it yourself. You are never locked into
