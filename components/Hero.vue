@@ -130,6 +130,12 @@ onMounted(() => {
     <div ref="logo" class="umbra-logo">
       <Logo />
     </div>
+
+    <div class="cta">
+      <UButton>Get Started</UButton>
+      <UButton>Documentation</UButton>
+    </div>
+
     <div ref="content" class="content">
       <Showcase :code="simpleUmbra">
         <ProseP>A theme management library to rule them all</ProseP>
@@ -238,7 +244,6 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  //padding-bottom: 25px;
   max-inline-size: 50ch;
   text-wrap: balance;
 }
@@ -246,5 +251,11 @@ onMounted(() => {
 .her .showcase {
   display: flex;
   gap: 2rem;
+}
+
+.cta {
+  display: flex;
+  gap: var(--space-xs);
+  margin: var(--space) 0px;
 }
 </style>

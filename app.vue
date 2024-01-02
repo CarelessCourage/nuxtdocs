@@ -26,23 +26,13 @@ useSeoMeta({
 provide("navigation", navigation);
 
 onMounted(() => {
-  const theme = umbra({
+  umbra({
     foreground: "#ffffff",
     background: "#000000",
-    accents: ["#ff0000"],
+    accents: ["#003344"],
   }).apply({
     formater: rgbStrippedFormat,
   });
-
-  const theme2 = umbra({
-    foreground: "#ffffff",
-    background: "#000000",
-    accents: ["#ff0000"],
-  }).apply({
-    formater: rgbStrippedFormat,
-  });
-
-  console.log("rezx", JSON.parse(JSON.stringify(theme2.output)));
 });
 </script>
 
@@ -74,14 +64,35 @@ a {
   color: rgb(var(--base-contrast) / 1);
 }
 
-code {
-  //background-color: red !important;
-}
-
 :root {
   --inner-radius: 3px;
   --radius: 10px;
   --outer-radius: calc(var(--radius) + var(--space-s));
+}
+
+$mobile: 360px;
+$phablet: 540px;
+$tablet: 850px;
+$desktop: 1200px;
+
+:root {
+  --space-xs: calc(var(--space) / 4);
+  --space-s: calc(var(--space) / 2);
+  --space: 25px;
+  --space-m: calc(2 * var(--space));
+  --space-l: calc(4 * var(--space));
+  --space-xl: calc(8 * var(--space));
+
+  --inner-radius: 3px;
+  --radius: 10px;
+  --outer-radius: calc(var(--radius) + var(--space-s));
+
+  @media only screen and (max-width: $tablet) {
+    --space: 12px;
+  }
+  @media only screen and (max-width: $mobile) {
+    --space: 6px;
+  }
 }
 
 :root {
