@@ -280,7 +280,7 @@ const simple2Output = highlight(
 );
 
 const simpleJSOutput = highlight(
-  `//Flattened JS output for eaily iterating through all your colors
+  `//Flattened JS output to make iterating through all your colors easy
 const flattened = [
   {name: '--base', color: '#000000'},
   {name: '--base-10', color: '#111111'},
@@ -357,14 +357,23 @@ const formated = [
   },
 ]; `);
 
-const umbraReturns = highlight(`const {
+const umbraReturns = highlight(`//All options returned when umbra() is called
+const {
   input: {/*inputed theme values*/},
-  output: {/*raw internal output before formating*/},
-  apply: () => /*format and then apply theme to document*/,
+  output: {/*inputs generates an output*/},
+  apply: () => /*format and then apply output to document*/,
   format: () => /*format the output into a usefull shape*/,
   inverse: () => /*inverse the theme - dark/light*/,
   isDark: () => /*check if the theme is dark, return boolean*/,
 } = umbra(lightTheme)`);
+
+const applyReturns = highlight(`//All options returned when apply() is called
+const {
+  input: {/*inputed theme values*/},
+  output: {/*inputs generates an output*/},
+  formated: {/*output gets formated to correct color formats*/},
+  flattened: {/*formated gets flattened for easy iteration*/},
+} = umbra(lightTheme).apply()`);
 
 const outputExample = [
   {
@@ -386,6 +395,10 @@ const outputExample = [
   {
     label: "Umbra",
     code: umbraReturns,
+  },
+  {
+    label: "Apply",
+    code: applyReturns,
   },
 ];
 </script>
