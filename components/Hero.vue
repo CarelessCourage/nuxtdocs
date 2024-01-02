@@ -78,39 +78,28 @@ const content = ref<HTMLElement>();
 onMounted(() => {
   if (!process.client) return;
 
-  if (!hero.value) return;
-  // gsap.to(hero.value, {
-  //   y: 400,
-  //   scrollTrigger: {
-  //     trigger: hero.value,
-  //     start: "top top",
-  //     end: "bottom top",
-  //     scrub: true,
-  //   },
-  // });
-
   // if (!logo.value) return;
   // gsap.to(logo.value, {
-  //   rotate: 360,
-  //   width: "80rem",
+  //   rotate: 160,
+  //   scale: 3.2,
   //   scrollTrigger: {
   //     trigger: hero.value,
   //     start: "top top",
-  //     end: "bottom top",
+  //     end: "600px top",
   //     scrub: true,
   //   },
   // });
 
-  // if (!circle.value) return;
-  // gsap.to(circle.value, {
-  //   y: 400,
-  //   scrollTrigger: {
-  //     trigger: hero.value,
-  //     start: "top top",
-  //     end: "bottom top",
-  //     scrub: true,
-  //   },
-  // });
+  if (!circle.value) return;
+  gsap.to(circle.value, {
+    y: 900,
+    scrollTrigger: {
+      trigger: hero.value,
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
 
   // if (!content.value) return;
   // gsap.to(content.value, {
@@ -132,9 +121,18 @@ onMounted(() => {
       <Logo />
     </div>
 
+    <ProseH1>UmbraJS</ProseH1>
     <div class="cta">
-      <UButton>Get Started</UButton>
-      <UButton>Documentation</UButton>
+      <UButton to="/getting-started" icon="i-heroicons-rocket-launch" size="lg"
+        >Get Started</UButton
+      >
+      <UButton
+        to="/getting-started"
+        icon="i-simple-icons-nuxtdotjs"
+        size="lg"
+        variant="outline"
+        >Documentation</UButton
+      >
     </div>
 
     <div ref="content" class="content">
@@ -226,7 +224,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .umbra-logo {
   width: 8rem;
-  padding: 100px 0px;
+  padding: var(--space-l) 0px var(--space);
 }
 
 .hero {
@@ -257,5 +255,6 @@ onMounted(() => {
   display: flex;
   gap: var(--space-xs);
   margin: var(--space) 0px;
+  padding-bottom: var(--space-xl);
 }
 </style>
