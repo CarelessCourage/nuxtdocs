@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 defineProps<{
-  code: string;
+  code?: string;
+  tabs?: {
+    label: string;
+    code: string;
+  }[];
 }>();
 </script>
 
@@ -11,7 +15,15 @@ defineProps<{
     </UCard>
     <div class="u-truncated">
       <div class="veil" />
-      <Code :code="code" />
+      <Tabs v-if="!code">
+        <Code
+          v-for="(tab, index) in tabs"
+          :key="index"
+          :label="'simple'"
+          :code="tab.code"
+        />
+      </Tabs>
+      <Code v-else :code="code" />
     </div>
   </div>
 </template>

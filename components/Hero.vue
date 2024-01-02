@@ -116,6 +116,15 @@ const formatTheme = highlight(`umbra(lightTheme).apply({
 })
 `);
 
+const tailwindTheme = highlight(`umbra({
+    foreground: "#ffffff",
+    background: "#000000",
+    accents: ["#8888ff"],
+  }).apply({
+    formater: rgbStrippedFormat,
+  })
+`);
+
 const manualTheme = highlight(`const theme = umbra({
   background: '#000000',
   foreground: '#ffffff',
@@ -243,6 +252,17 @@ onMounted(() => {
   //   },
   // });
 });
+
+const lol = [
+  {
+    label: "Simple",
+    code: simpleUmbra,
+  },
+  {
+    label: "Complex",
+    code: complexUmbra,
+  },
+];
 </script>
 
 <template>
@@ -275,16 +295,12 @@ onMounted(() => {
     </div>
 
     <div ref="content" class="content">
-      <Showcase :code="simpleUmbra">
+      <Showcase :tabs="lol">
         <ProseP class="tracking-wide font-bold">Input</ProseP>
         <ProseP>
           Umbra is a simple function that typically takes in as few as 2-3
-          colors.
+          colors. Or many more if you want.
         </ProseP>
-      </Showcase>
-
-      <Showcase :code="complexUmbra">
-        <ProseP> Or many more if you want. </ProseP>
       </Showcase>
 
       <UIcon name="i-heroicons-arrow-down" size="lg" class="text-gray-400" />
