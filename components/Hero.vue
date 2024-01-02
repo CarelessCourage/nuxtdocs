@@ -302,6 +302,18 @@ const simple2Output = highlight(
   "css"
 );
 
+const shortJSOutput = highlight(
+  `//Flattened JS output to make iterating through all your colors easy. Shortened for brevity
+const flattened = [
+  {name: '--base', color: '#000000'},
+  {name: '--base-10', color: '#111111'},
+  {name: '--base-20', color: '#252525'},
+  {name: '--base-30', color: '#373737'},
+  //...etc
+]
+`
+);
+
 const simpleJSOutput = highlight(
   `//Flattened JS output to make iterating through all your colors easy
 const flattened = [
@@ -407,6 +419,24 @@ const outputExample = [
     label: "Full",
     code: simple2Output,
   },
+];
+
+const optionsExample = [
+  {
+    label: "Umbra",
+    code: umbraReturns,
+  },
+  {
+    label: "Apply",
+    code: applyReturns,
+  },
+];
+
+const dataExample = [
+  {
+    label: "Short",
+    code: shortJSOutput,
+  },
   {
     label: "Flattened",
     code: simpleJSOutput,
@@ -415,13 +445,81 @@ const outputExample = [
     label: "Formated",
     code: formatedJSOutput,
   },
+];
+
+const string = "`${rgb.r} ${rgb.g} ${rgb.b}`";
+
+const formatTailwind = highlight(
+  `//Tailwind friendly format
+theme.apply({
+  formater: (colord) => {
+    const rgb = colord.toRgb()
+    return ` +
+    string +
+    `
+  }
+});`
+);
+
+const addTailwind =
+  highlight(`//list your color variables in the tailwind config
+
+import type { Config } from 'tailwindcss';
+
+export default {
+  theme: {
+    colors: {
+      //Base Range
+      'base-120': 'rgb(var(--base-120) / <alpha-value>)',
+      'base-110': 'rgb(var(--base-110) / <alpha-value>)',
+      'base-100': 'rgb(var(--base-100) / <alpha-value>)',
+      'base-90': 'rgb(var(--base-90) / <alpha-value>)',
+      'base-80': 'rgb(var(--base-80) / <alpha-value>)',
+      'base-70': 'rgb(var(--base-70) / <alpha-value>)',
+      'base-60': 'rgb(var(--base-60) / <alpha-value>)',
+      'base-50': 'rgb(var(--base-50) / <alpha-value>)',
+      'base-40': 'rgb(var(--base-40) / <alpha-value>)',
+      'base-30': 'rgb(var(--base-30) / <alpha-value>)',
+      'base-20': 'rgb(var(--base-20) / <alpha-value>)',
+      'base-10': 'rgb(var(--base-10) / <alpha-value>)',
+
+      //Accent Range
+      'accent-120': 'rgb(var(--accent-120) / <alpha-value>)',
+      'accent-110': 'rgb(var(--accent-110) / <alpha-value>)',
+      'accent-100': 'rgb(var(--accent-100) / <alpha-value>)',
+      'accent-90': 'rgb(var(--accent-90) / <alpha-value>)',
+      'accent-80': 'rgb(var(--accent-80) / <alpha-value>)',
+      'accent-70': 'rgb(var(--accent-70) / <alpha-value>)',
+      'accent-60': 'rgb(var(--accent-60) / <alpha-value>)',
+      'accent-50': 'rgb(var(--accent-50) / <alpha-value>)',
+      'accent-40': 'rgb(var(--accent-40) / <alpha-value>)',
+      'accent-30': 'rgb(var(--accent-30) / <alpha-value>)',
+      'accent-20': 'rgb(var(--accent-20) / <alpha-value>)',
+      'accent-10': 'rgb(var(--accent-10) / <alpha-value>)',
+
+      // other ranges you might have added 
+      // (warning, success, etc)...
+    }
+  },
+} satisfies Config;`);
+
+const applyTailwind = highlight(
+  `//Now you're free to use your theme in tailwind
+<div class="bg-base-60" />`
+);
+
+const tailwindExample = [
   {
-    label: "Umbra",
-    code: umbraReturns,
+    label: "Format",
+    code: formatTailwind,
   },
   {
-    label: "Apply",
-    code: applyReturns,
+    label: "Config",
+    code: addTailwind,
+  },
+  {
+    label: "Use",
+    code: applyTailwind,
   },
 ];
 </script>
@@ -497,6 +595,19 @@ const outputExample = [
         </ProseP>
       </Showcase>
 
+      <Showcase :tabs="optionsExample">
+        <ProseP class="tracking-wide font-bold">Options</ProseP>
+        <ProseP> Umbra returns a number of useful funcions and data </ProseP>
+      </Showcase>
+
+      <Showcase :tabs="dataExample">
+        <ProseP class="tracking-wide font-bold">Data</ProseP>
+        <ProseP>
+          Examples of what the formated data looks like. Returned from both the
+          apply() function and the format() function
+        </ProseP>
+      </Showcase>
+
       <Showcase :tabs="manipulateExample">
         <ProseP class="tracking-wide font-bold">Dark/Light</ProseP>
         <ProseP>
@@ -510,7 +621,7 @@ const outputExample = [
       <Showcase :code="apcaTheme">
         <ProseP class="tracking-wide font-bold">Accessibility</ProseP>
         <ProseP>
-          Prioritse accessibility by setting a readabillity target. Calculated
+          Prioritize accessibility by setting a readabillity target. Calculated
           using the best color contrast standard
           <ULink
             to="https://www.myndex.com/"
@@ -537,6 +648,15 @@ const outputExample = [
           So you can mix and match handpicked color ranges and automatic color
           ranges as you please. Maybe start with an auto generated one and then
           refine it into a handpicked one as you mature.
+        </ProseP>
+      </Showcase>
+
+      <Showcase :tabs="tailwindExample">
+        <ProseP class="tracking-wide font-bold">Tailwind</ProseP>
+        <ProseP>
+          Tailwind expects colors to be stripped RGB values (number, number,
+          number) so that it can apply opacity to them. To acomplish this format
+          simply pass a formater that splits rgb into seperate values
         </ProseP>
       </Showcase>
 
