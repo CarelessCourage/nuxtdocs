@@ -126,6 +126,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <Circle ref="circle" />
   <div ref="hero" class="hero">
     <div ref="logo" class="umbra-logo">
       <Logo />
@@ -156,7 +157,7 @@ onMounted(() => {
           <ULink
             to="https://www.myndex.com/"
             active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+            inactive-class="text-primary-500 hover:text-gray-100"
           >
             (APCA).
           </ULink>
@@ -165,7 +166,7 @@ onMounted(() => {
           <ULink
             to="https://www.radix-ui.com/colors"
             active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+            inactive-class="text-primary-500 hover:text-gray-100"
           >
             radix-colors.
           </ULink>
@@ -217,7 +218,6 @@ onMounted(() => {
       </Showcase>
     </div>
   </div>
-  <Circle ref="circle" />
   <!-- <Ellipsis size="40rem" class="absolute -top-72 -left-48" />
   <Ellipsis size="60rem" class="absolute -bottom-32 -right-56" />
   <Ellipsis size="40rem" z-index="0" class="absolute" /> -->

@@ -29,7 +29,7 @@ onMounted(() => {
   umbra({
     foreground: "#ffffff",
     background: "#000000",
-    accents: ["#003344"],
+    accents: ["#8888ff"],
   }).apply({
     formater: rgbStrippedFormat,
   });
@@ -58,6 +58,10 @@ onMounted(() => {
 
 <style lang="scss">
 //@import "./css";
+
+* {
+  transition: 0.2s;
+}
 
 h1,
 a {
@@ -111,19 +115,19 @@ $desktop: 1200px;
   --base-120: 249 249 249;
   --base-contrast: 255 255 255;
 
-  --accent: 255 0 0;
-  --accent-10: 20 6 2;
-  --accent-20: 40 16 5;
-  --accent-30: 58 20 8;
-  --accent-40: 75 23 10;
-  --accent-50: 116 27 12;
-  --accent-60: 255 0 0;
-  --accent-70: 255 105 69;
-  --accent-80: 255 146 113;
-  --accent-90: 255 196 175;
-  --accent-100: 255 223 210;
-  --accent-110: 255 237 230;
-  --accent-120: 255 245 241;
+  --accent: 136 136 255;
+  --accent-10: 11 10 17;
+  --accent-20: 25 24 37;
+  --accent-30: 35 34 55;
+  --accent-40: 44 43 72;
+  --accent-50: 66 65 114;
+  --accent-60: 136 136 255;
+  --accent-70: 169 164 255;
+  --accent-80: 192 186 255;
+  --accent-90: 221 217 255;
+  --accent-100: 236 234 255;
+  --accent-110: 245 243 255;
+  --accent-120: 250 248 255;
   --accent-contrast: 255 255 255;
 }
 

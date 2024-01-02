@@ -4,7 +4,7 @@
 
 <style scoped lang="scss">
 .circle {
-  --color: rgb(var(--accent-20) / 1);
+  --color: rgb(var(--accent-30));
   position: absolute;
   z-index: 20;
   left: 0px;

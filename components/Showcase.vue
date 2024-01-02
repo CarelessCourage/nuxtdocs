@@ -25,7 +25,7 @@ defineProps<{
 
 .u-truncated {
   position: relative;
-  max-height: 202px;
+  //max-height: 202px;
   overflow: hidden;
   border-radius: var(--radius);
 }
@@ -35,8 +35,8 @@ defineProps<{
   bottom: -90px;
   width: 100%;
   height: 40px;
-  background-color: var(--base);
-  box-shadow: 0px -40px 60px 60px var(--base);
-  opacity: 0.8;
+  //background-color: rgb(var(--base-10) / 1);
+  //box-shadow: 0px -40px 60px 60px rgb(var(--base-10) / 1);
+  //opacity: 0.8;
 }
 </style>
