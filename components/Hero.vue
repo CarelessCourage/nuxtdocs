@@ -11,6 +11,32 @@ const simpleUmbra = highlight(`umbra({
 }).apply();
 `);
 
+const complexUmbra = highlight(`const success = {
+  name: "success",
+  color: "#ececec",
+}
+
+const warning = {
+  name: "warning",
+  color: "#ececec",
+}
+
+umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ['#ff0000', '#00ff00', '#0000ff', success, warning],
+}).apply();
+`);
+
+const complexUmbra2 = highlight(`umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: [{
+    shades: [5, 10, 10, 10, 25, 25, 25, 25, 45, "#ececec", 45, 45],
+  }],
+}).apply();
+`);
+
 const scaleCode = highlight(`const header = document.querySelector("header");
 
 umbra({
@@ -27,14 +53,79 @@ umbra({
   accents: ["#ff0000", "#0000ff"],
 }).apply({ element: footer });`);
 
-const invertTheme = highlight(` const theme = umbra({
-    foreground: "#ffffff",
-    background: "#000000",
-    accents: ["#ff0000", "#0000ff"],
-  });
+const invertTheme = highlight(`const theme = umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#ff0000", "#0000ff"],
+});
 
-  //Convert to dark theme
-  theme.inverse().apply();`);
+//Convert to dark theme
+theme.inverse().apply();`);
+
+const manageThemes = highlight(`
+const darkTheme = {
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#ff0000"],
+}
+
+const lightTheme = {
+  foreground: "#000000",
+  background: "#ffffff",
+  accents: ["#ff0000"],
+}
+
+const theme = umbra(lightTheme).apply();
+`);
+
+const apcaTheme = highlight(`const settings = {
+  readability: 40,
+};
+
+umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#8888ff"],
+}, settings).apply()`);
+
+const radixTheme = highlight(`import { blue, blueDark } from '@radix-ui/colors'
+
+const radixBlue = {
+  name: 'blue',
+  shades: Object.values(blueDark),
+  tints: Object.values(blue)
+}
+
+const theme = umbra({
+  background: '#000000',
+  foreground: '#ffffff',
+  accents: [radixBlue]
+}).apply()
+`);
+
+const manualTheme = highlight(`const theme = umbra({
+  background: '#000000',
+  foreground: '#ffffff',
+  accents: [{
+    name: 'red',
+    shades:
+      [
+        '#140602', 
+        '#281005', 
+        '#3a1408', 
+        '#4b170a', 
+        '#741b0c', 
+        '#ff0000', 
+        '#ff6945', 
+        '#ff9271', 
+        '#ffc4af', 
+        '#ffdfd2', 
+        '#ffede6', 
+        '#fff5f1'
+      ]
+  }]
+}).apply()
+`);
 
 const simpleOutput = highlight(
   `:root {
@@ -69,6 +160,33 @@ const simpleOutput = highlight(
 `,
   "css"
 );
+
+const lockTheme = highlight(`//Delete this
+const theme = umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#ff0000"],
+}).apply();
+
+//Paste output into your css
+// :root {
+//   --base: #000000;
+//   --base-10: #111111;
+//   --base-20: #252525;
+//   --base-30: #373737;
+//   --base-40: #484848;
+//   --base-50: #727272;
+//   --base-60: #939393;
+//   --base-70: #adadad;
+//   --base-80: #c1c1c1;
+//   --base-90: #dcdcdc;
+//   --base-100: #ececec;
+//   --base-110: #f5f5f5;
+//   --base-120: #f9f9f9;
+//   --base-contrast: #ffffff;
+//   ///...etc
+// }
+`);
 
 const hero = ref<HTMLElement>();
 const logo = ref<HTMLElement>();
@@ -122,36 +240,74 @@ onMounted(() => {
     </div>
 
     <ProseH1>UmbraJS</ProseH1>
+    <ProseP class="text-gray-400">
+      A theme management library to rule them all 💍
+    </ProseP>
     <div class="cta">
-      <UButton to="/getting-started" icon="i-heroicons-rocket-launch" size="lg"
-        >Get Started</UButton
-      >
+      <UButton to="/getting-started" icon="i-heroicons-rocket-launch" size="lg">
+        Get Started
+      </UButton>
       <UButton
         to="/getting-started"
         icon="i-simple-icons-nuxtdotjs"
         size="lg"
         variant="outline"
-        >Documentation</UButton
       >
+        Documentation
+      </UButton>
     </div>
 
     <div ref="content" class="content">
       <Showcase :code="simpleUmbra">
-        <ProseP>A theme management library to rule them all</ProseP>
+        <ProseP class="tracking-wide font-bold">Input</ProseP>
+        <ProseP>
+          Umbra is a simple function that typically takes in as few as 2-3
+          colors.
+        </ProseP>
       </Showcase>
 
+      <Showcase :code="complexUmbra">
+        <ProseP> Or many more if you want. </ProseP></Showcase
+      >
+
       <Showcase :code="simpleOutput">
+        <ProseP class="tracking-wide font-bold">Output</ProseP>
         <ProseP>
-          Generated output is a standardised collection of CSS variables that
-          will stay the same pattern no matter the theme
+          Generated output is a standardised collection of CSS variables. The
+          pattern itself stays consistent regardless of the theme and all
+          results are adjusted against the background colors to meet
+          <ULink
+            to="https://www.myndex.com/"
+            active-class="text-primary"
+            inactive-class="text-primary-500 hover:text-gray-100"
+          >
+            APCA
+          </ULink>
+          standards.
+        </ProseP>
+      </Showcase>
+
+      <Showcase :code="manageThemes">
+        <ProseP class="tracking-wide font-bold">Manage</ProseP>
+        <ProseP>
+          This makes it easy to modify and manage your theme. Switch between
+          themes. Change colors.
         </ProseP>
       </Showcase>
 
       <Showcase :code="invertTheme">
         <ProseP>
-          Makes it easy to modify and manage your theme. Switch between themes.
-          Change theme. Automatic dark/light mode. Monitor theme accessibility
-          against cutting edge color contrast standards
+          Automatic dark/light mode. You can manually define your own light and
+          dark version of a theme, but even without that it can automatically
+          spit out an inversion for you in the meanwhile. Makes it easier to
+          start out with, and lets you focus on less repetitive tasks.
+        </ProseP>
+      </Showcase>
+
+      <Showcase :code="apcaTheme">
+        <ProseP>
+          Prioritse accessibility by setting readabillity target. Calculated
+          using the best color contrast standard
           <ULink
             to="https://www.myndex.com/"
             active-class="text-primary"
@@ -159,8 +315,13 @@ onMounted(() => {
           >
             (APCA).
           </ULink>
-          Perfect parity with
+          Defaults to a sensible target.
+        </ProseP>
+      </Showcase>
 
+      <Showcase :code="radixTheme">
+        <ProseP>
+          Perfect parity with
           <ULink
             to="https://www.radix-ui.com/colors"
             active-class="text-primary"
@@ -168,6 +329,9 @@ onMounted(() => {
           >
             radix-colors.
           </ULink>
+          So you can mix and match handpicked color ranges and automatic color
+          ranges as you please. Maybe start with an auto generated one and the
+          refine it into a handpicked one as you mature.
         </ProseP>
       </Showcase>
 
@@ -182,10 +346,8 @@ onMounted(() => {
 
       <Showcase :code="simpleUmbra">
         <ProseP>
-          Boss-man randomly wants to be able to dynamically change the color of
-          that one card? Done. Need more extreme variant in theming
-          customisations? Then use a color alias layer that lets you get as
-          complex as you want.
+          Need more extreme variant in theming customisations? Then use a color
+          alias layer that lets you get as complex as you want.
         </ProseP>
       </Showcase>
 
@@ -198,7 +360,7 @@ onMounted(() => {
         </ProseP>
       </Showcase>
 
-      <Showcase :code="simpleUmbra">
+      <Showcase :code="manualTheme">
         <ProseP>
           It's more than just a theme generator, its a theme manager. The
           generation part is just the backdrop that makes adjustments quick and
@@ -207,7 +369,7 @@ onMounted(() => {
         </ProseP>
       </Showcase>
 
-      <Showcase :code="simpleUmbra">
+      <Showcase :code="lockTheme">
         <ProseP>
           If you decide you no longer want Umbra, removing it is as easy as
           copying the output and pasting it yourself. You are never locked into
@@ -253,7 +415,7 @@ onMounted(() => {
 
 .cta {
   display: flex;
-  gap: var(--space-xs);
+  gap: var(--space-s);
   margin: var(--space) 0px;
   padding-bottom: var(--space-xl);
 }
