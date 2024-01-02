@@ -143,6 +143,10 @@ code {
   --color-primary-DEFAULT: var(--color-primary-500);
 }
 
+.prose-primary {
+  --tw-prose-pre-border: rgb(var(--color-gray-900));
+}
+
 html {
   overflow-x: hidden;
 }

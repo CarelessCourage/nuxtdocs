@@ -7,7 +7,6 @@ defineOptions({
 });
 
 const appConfig = useAppConfig();
-const colorMode = useColorMode();
 const theme = useTheme();
 
 function inverse() {

@@ -23,7 +23,7 @@ defineOgImage({
       <Hero />
     </UContainer>
 
-    <ULandingHero v-if="page.hero" v-bind="page.hero">
+    <LandingHero v-bind="page.hero">
       <template #title>
         <MDC :value="page.hero.title" />
       </template>
@@ -31,11 +31,11 @@ defineOgImage({
       <MDC
         :value="page.hero.code"
         tag="pre"
-        class="prose prose-primary dark:prose-invert max-w-none"
+        class="prose prose-primary max-w-none"
       />
-    </ULandingHero>
+    </LandingHero>
 
-    <ULandingSection :title="page.features.title">
+    <LandingSection :title="page.features.title">
       <UPageGrid>
         <LandingCard
           v-for="(item, index) of page.features.items"
@@ -43,6 +43,6 @@ defineOgImage({
           v-bind="item"
         />
       </UPageGrid>
-    </ULandingSection>
+    </LandingSection>
   </div>
 </template>

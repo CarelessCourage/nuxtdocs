@@ -1,3 +1,79 @@
+<script setup lang="ts">
+import type { Button } from "#ui/types";
+
+const config = {
+  wrapper: "py-24 sm:py-32",
+  container: "gap-16 sm:gap-y-24",
+  base: "",
+  icon: {
+    wrapper: "flex mb-6",
+    base: "w-10 h-10 flex-shrink-0 text-primary",
+  },
+  headline: "mb-2 text-base/7 font-semibold text-primary",
+  title:
+    "text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl lg:text-5xl",
+  description: "mt-6 text-lg/8 text-gray-600 dark:text-gray-300",
+  links: "mt-8 flex flex-wrap gap-x-3 gap-y-1.5",
+  features: {
+    wrapper: {
+      base: "mt-6 leading-7",
+      list: "space-y-4",
+      grid: "grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16",
+    },
+    base: "relative pl-8",
+    name: "font-semibold text-gray-900",
+    description: "text-gray-500 dark:text-gray-400 leading-6",
+    icon: {
+      base: "absolute left-0 top-1 h-5 w-5 text-primary",
+      name: "i-heroicons-check-circle",
+    },
+  },
+};
+
+defineOptions({
+  inheritAttrs: false,
+});
+
+const props = withDefaults(
+  defineProps<{
+    icon?: string;
+    headline?: string;
+    title?: string;
+    description?: string;
+    features?: {
+      icon?: string;
+      name: string;
+      description?: string;
+    }[];
+    links?: (Button & { click?: Function })[];
+    slot?: string;
+    align?: "left" | "center" | "right";
+    ui?: Partial<typeof config>;
+    class?: any;
+  }>(),
+  {
+    icon: undefined,
+    headline: undefined,
+    title: "",
+    description: undefined,
+    features: () => [],
+    links: () => [],
+    slot: undefined,
+    align: "center",
+    ui: () => ({}),
+    class: undefined,
+  }
+);
+
+const { ui, attrs } = useUI(
+  "landing.section",
+  toRef(props, "ui"),
+  config,
+  toRef(props, "class"),
+  true
+);
+</script>
+
 <template>
   <div :class="ui.wrapper" v-bind="attrs">
     <slot name="top" />
@@ -13,6 +89,7 @@
       <div
         v-if="
           icon ||
+          $slots.icon ||
           headline ||
           $slots.headline ||
           title ||
@@ -28,8 +105,10 @@
           align === 'right' && 'lg:order-last',
         ]"
       >
-        <div v-if="icon" :class="ui.icon.wrapper">
-          <UIcon :name="icon" :class="ui.icon.base" />
+        <div v-if="icon || $slots.icon" :class="ui.icon.wrapper">
+          <slot name="icon">
+            <UIcon :name="(icon as string)" :class="ui.icon.base" />
+          </slot>
         </div>
 
         <div v-else-if="headline || $slots.headline" :class="ui.headline">
@@ -47,7 +126,6 @@
         <p v-if="description || $slots.description" :class="ui.description">
           <slot name="description">
             {{ description }}
-            lolers
           </slot>
         </p>
 
@@ -134,79 +212,3 @@
     <slot name="bottom" />
   </div>
 </template>
-
-<script setup lang="ts">
-import type { Button } from "#ui/types";
-
-const config = {
-  wrapper: "py-24 sm:py-32",
-  container: "gap-16 sm:gap-y-24",
-  base: "",
-  icon: {
-    wrapper: "flex mb-6",
-    base: "w-10 h-10 flex-shrink-0 text-primary",
-  },
-  headline: "mb-2 text-base/7 font-semibold text-primary",
-  title:
-    "text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl",
-  description: "mt-6 text-lg/8 text-gray-600 dark:text-gray-300",
-  links: "mt-8 flex flex-wrap gap-x-3 gap-y-1.5",
-  features: {
-    wrapper: {
-      base: "mt-6 leading-7",
-      list: "space-y-4",
-      grid: "grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16",
-    },
-    base: "relative pl-8",
-    name: "font-semibold text-gray-900 dark:text-white",
-    description: "text-gray-500 dark:text-gray-400 leading-6",
-    icon: {
-      base: "absolute left-0 top-1 h-5 w-5 text-primary",
-      name: "i-heroicons-check-circle",
-    },
-  },
-};
-
-defineOptions({
-  inheritAttrs: false,
-});
-
-const props = withDefaults(
-  defineProps<{
-    icon?: string;
-    headline?: string;
-    title?: string;
-    description?: string;
-    features?: {
-      icon?: string;
-      name: string;
-      description?: string;
-    }[];
-    links?: (Button & { click?: Function })[];
-    slot?: string;
-    align?: "left" | "center" | "right";
-    ui?: Partial<typeof config>;
-    class?: any;
-  }>(),
-  {
-    icon: undefined,
-    headline: undefined,
-    title: "",
-    description: undefined,
-    features: () => [],
-    links: () => [],
-    slot: undefined,
-    align: "center",
-    ui: () => ({}),
-    class: undefined,
-  }
-);
-
-const { ui, attrs } = useUI(
-  "landing.section",
-  toRef(props, "ui"),
-  config,
-  toRef(props, "class"),
-  true
-);
-</script>

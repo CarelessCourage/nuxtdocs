@@ -30,7 +30,7 @@ const codeHighlight = highlight(props.code, props.language);
 </script>
 
 <template>
-  <pre class="prose code" :class="$props.class" v-html="codeHighlight" />
+  <div class="prose code" v-html="codeHighlight" />
 </template>
 
 <style lang="scss">
