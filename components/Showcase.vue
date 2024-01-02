@@ -21,6 +21,7 @@ defineProps<{
   display: flex;
   flex-direction: column;
   gap: 0rem;
+  width: 100%;
 }
 
 .u-truncated {

@@ -23,18 +23,6 @@ defineOgImage({
       <Hero />
     </UContainer>
 
-    <LandingHero v-bind="page.hero">
-      <template #title>
-        <MDC :value="page.hero.title" />
-      </template>
-
-      <MDC
-        :value="page.hero.code"
-        tag="pre"
-        class="prose prose-primary max-w-none"
-      />
-    </LandingHero>
-
     <LandingSection :title="page.features.title">
       <UPageGrid>
         <LandingCard

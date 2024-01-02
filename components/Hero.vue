@@ -37,29 +37,35 @@ const complexUmbra2 = highlight(`umbra({
 }).apply();
 `);
 
-const scaleCode = highlight(`const header = document.querySelector("header");
+const scaleCode = highlight(`umbra(lightTheme).apply({ 
+  element: document.querySelector("header") 
+});
 
+umbra(darkTheme).apply({ 
+  element: document.querySelector("footer")
+});`);
+
+const invertTheme =
+  highlight(`//Manually set your themes light and dark versions
 umbra({
   foreground: "#ffffff",
   background: "#000000",
-  accents: ["#ff0000", "#0000ff"],
-}).apply({ element: header });
+  accents: ["#8888ff"],
+  inverted: {
+    foreground: "#000000",
+    background: "#ffffff",
+    accents: ["#8888ff"],
+  }
+}).apply()
 
-const footer = document.querySelector("footer");
 
-umbra({
-  foreground: "#ffffff",
-  background: "#000000",
-  accents: ["#ff0000", "#0000ff"],
-}).apply({ element: footer });`);
-
-const invertTheme = highlight(`const theme = umbra({
+const theme = umbra({
   foreground: "#ffffff",
   background: "#000000",
   accents: ["#ff0000", "#0000ff"],
 });
 
-//Convert to dark theme
+//Or automatically convert any theme to a dark/light theme
 theme.inverse().apply();`);
 
 const manageThemes = highlight(`
@@ -79,7 +85,7 @@ const theme = umbra(lightTheme).apply();
 `);
 
 const apcaTheme = highlight(`const settings = {
-  readability: 40,
+  readability: 40, //0-120
 };
 
 umbra({
@@ -101,6 +107,13 @@ const theme = umbra({
   foreground: '#ffffff',
   accents: [radixBlue]
 }).apply()
+`);
+
+const formatTheme = highlight(`umbra(lightTheme).apply({
+  formater: (color) => {
+    return color.toHslString();
+  },
+})
 `);
 
 const manualTheme = highlight(`const theme = umbra({
@@ -257,6 +270,10 @@ onMounted(() => {
       </UButton>
     </div>
 
+    <div class="walkthrough">
+      <ProseH1>Walkthrough</ProseH1>
+    </div>
+
     <div ref="content" class="content">
       <Showcase :code="simpleUmbra">
         <ProseP class="tracking-wide font-bold">Input</ProseP>
@@ -267,8 +284,10 @@ onMounted(() => {
       </Showcase>
 
       <Showcase :code="complexUmbra">
-        <ProseP> Or many more if you want. </ProseP></Showcase
-      >
+        <ProseP> Or many more if you want. </ProseP>
+      </Showcase>
+
+      <UIcon name="i-heroicons-arrow-down" size="lg" class="text-gray-400" />
 
       <Showcase :code="simpleOutput">
         <ProseP class="tracking-wide font-bold">Output</ProseP>
@@ -299,14 +318,14 @@ onMounted(() => {
         <ProseP>
           Automatic dark/light mode. You can manually define your own light and
           dark version of a theme, but even without that it can automatically
-          spit out an inversion for you in the meanwhile. Makes it easier to
+          spit out an inversion for you in the meanwhile. Making it easier to
           start out with, and lets you focus on less repetitive tasks.
         </ProseP>
       </Showcase>
 
       <Showcase :code="apcaTheme">
         <ProseP>
-          Prioritse accessibility by setting readabillity target. Calculated
+          Prioritse accessibility by setting a readabillity target. Calculated
           using the best color contrast standard
           <ULink
             to="https://www.myndex.com/"
@@ -330,9 +349,13 @@ onMounted(() => {
             radix-colors.
           </ULink>
           So you can mix and match handpicked color ranges and automatic color
-          ranges as you please. Maybe start with an auto generated one and the
+          ranges as you please. Maybe start with an auto generated one and then
           refine it into a handpicked one as you mature.
         </ProseP>
+      </Showcase>
+
+      <Showcase :code="formatTheme">
+        <ProseP> Format your colors however you want </ProseP>
       </Showcase>
 
       <Showcase :code="scaleCode">
@@ -384,6 +407,10 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+.walkthrough {
+  padding: var(--space-l) 0px var(--space-xl);
+}
+
 .umbra-logo {
   width: 8rem;
   padding: var(--space-l) 0px var(--space);
@@ -403,7 +430,9 @@ onMounted(() => {
 .hero .content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-l);
   max-inline-size: 50ch;
   text-wrap: balance;
 }
