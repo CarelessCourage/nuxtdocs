@@ -16,12 +16,9 @@ defineProps<{
     <div class="u-truncated">
       <div class="veil" />
       <Tabs v-if="!code">
-        <Code
-          v-for="(tab, index) in tabs"
-          :key="index"
-          :label="'simple'"
-          :code="tab.code"
-        />
+        <div v-for="(tab, index) in tabs" :key="index" :label="tab.label">
+          <Code :code="tab.code" />
+        </div>
       </Tabs>
       <Code v-else :code="code" />
     </div>

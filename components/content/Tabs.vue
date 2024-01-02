@@ -37,17 +37,18 @@ const selectedIndex = ref(props.selectedIndex || 0);
 
 // Computed
 
-const tabs = computed(
-  () =>
-    slots.default?.().map((slot, index) => {
-      return {
-        index,
-        label: slot.props?.label || `${index}`,
-        icon: slot.props?.icon,
-        component: slot,
-      };
-    }) || []
-);
+const tabs = computed(() => {
+  const children = slots.default?.()[0].children;
+  //@ts-ignore
+  const mapped = children.map((slot, index) => ({
+    index,
+    label: slot.props?.label || `${index}`,
+    icon: slot.props?.icon,
+    component: slot,
+  }));
+  console.log("rex2: ", mapped);
+  return mapped || [];
+});
 </script>
 
 <template>
@@ -65,7 +66,6 @@ const tabs = computed(
         @click="selectedIndex = index"
       >
         <UIcon v-if="tab.icon" :name="tab.icon" :class="ui.tab.icon.base" />
-
         <span>{{ tab.label }}</span>
       </button>
     </div>

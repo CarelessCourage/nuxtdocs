@@ -4,30 +4,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const simpleUmbra = highlight(`umbra({
-  foreground: "#ffffff",
-  background: "#000000",
-  accents: ["#ff0000"],
-}).apply();
-`);
-
-const complexUmbra = highlight(`const success = {
-  name: "success",
-  color: "#ececec",
-}
-
-const warning = {
-  name: "warning",
-  color: "#ececec",
-}
-
-umbra({
-  foreground: "#ffffff",
-  background: "#000000",
-  accents: ['#ff0000', '#00ff00', '#0000ff', success, warning],
-}).apply();
-`);
-
 const complexUmbra2 = highlight(`umbra({
   foreground: "#ffffff",
   background: "#000000",
@@ -149,40 +125,6 @@ const manualTheme = highlight(`const theme = umbra({
 }).apply()
 `);
 
-const simpleOutput = highlight(
-  `:root {
-  --base: #000000;
-  --base-10: #111111;
-  --base-20: #252525;
-  --base-30: #373737;
-  --base-40: #484848;
-  --base-50: #727272;
-  --base-60: #939393;
-  --base-70: #adadad;
-  --base-80: #c1c1c1;
-  --base-90: #dcdcdc;
-  --base-100: #ececec;
-  --base-110: #f5f5f5;
-  --base-120: #f9f9f9;
-  --base-contrast: #ffffff;
-  --accent: #ff0000;
-  --accent-10: #140602;
-  --accent-20: #281005;
-  --accent-30: #3a1408;
-  --accent-40: #4b170a;
-  --accent-50: #741b0c;
-  --accent-60: #ff0000;
-  --accent-70: #ff6945;
-  --accent-80: #ff9271;
-  --accent-90: #ffc4af;
-  --accent-100: #ffdfd2;
-  --accent-110: #ffede6;
-  --accent-120: #fff5f1;
-}
-`,
-  "css"
-);
-
 const lockTheme = highlight(`//Delete this
 const theme = umbra({
   foreground: "#ffffff",
@@ -253,14 +195,197 @@ onMounted(() => {
   // });
 });
 
-const lol = [
+const simpleUmbra = highlight(`umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#ff0000"],
+}).apply();
+`);
+
+const complexUmbra = highlight(`const success = {
+  name: "success",
+  color: "#ececec",
+}
+
+const warning = {
+  name: "warning",
+  color: "#ececec",
+}
+
+umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ['#ff0000', '#00ff00', '#0000ff', success, warning],
+}).apply();
+`);
+
+const inputExample = [
   {
     label: "Simple",
     code: simpleUmbra,
   },
   {
-    label: "Complex",
+    label: "More",
     code: complexUmbra,
+  },
+];
+
+const simpleOutput = highlight(
+  `/*Example of CSS output shortened for brevity*/
+:root {
+  --base: #000000;
+  --base-10: #111111;
+  --base-20: #252525;
+  --base-30: #373737;
+  --base-40: #484848;
+  ...etc
+}
+`,
+  "css"
+);
+
+const simple2Output = highlight(
+  `/*Example of CSS output expanded for clarity*/
+:root {
+  --base: #000000;
+  --base-10: #111111;
+  --base-20: #252525;
+  --base-30: #373737;
+  --base-40: #484848;
+  --base-50: #727272;
+  --base-60: #939393;
+  --base-70: #adadad;
+  --base-80: #c1c1c1;
+  --base-90: #dcdcdc;
+  --base-100: #ececec;
+  --base-110: #f5f5f5;
+  --base-120: #f9f9f9;
+  --base-contrast: #ffffff;
+  --accent: #ff0000;
+  --accent-10: #140602;
+  --accent-20: #281005;
+  --accent-30: #3a1408;
+  --accent-40: #4b170a;
+  --accent-50: #741b0c;
+  --accent-60: #ff0000;
+  --accent-70: #ff6945;
+  --accent-80: #ff9271;
+  --accent-90: #ffc4af;
+  --accent-100: #ffdfd2;
+  --accent-110: #ffede6;
+  --accent-120: #fff5f1;
+}
+`,
+  "css"
+);
+
+const simpleJSOutput = highlight(
+  `//Flattened JS output for eaily iterating through all your colors
+const flattened = [
+  {name: '--base', color: '#000000'},
+  {name: '--base-10', color: '#111111'},
+  {name: '--base-20', color: '#252525'},
+  {name: '--base-30', color: '#373737'},
+  {name: '--base-40', color: '#484848'},
+  {name: '--base-50', color: '#727272'},
+  {name: '--base-60', color: '#939393'},
+  {name: '--base-70', color: '#adadad'},
+  {name: '--base-80', color: '#c1c1c1'},
+  {name: '--base-90', color: '#dcdcdc'},
+  {name: '--base-100', color: '#ececec'},
+  {name: '--base-110', color: '#f5f5f5'},
+  {name: '--base-120', color: '#f9f9f9'},
+  {name: '--base-contrast', color: '#ffffff'},
+  {name: '--accent', color: '#8888ff'},
+  {name: '--accent-10', color: '#0b0a11'},
+  {name: '--accent-20', color: '#191825'},
+  {name: '--accent-30', color: '#232237'},
+  {name: '--accent-40', color: '#2c2b48'},
+  {name: '--accent-50', color: '#424172'}, 
+  {name: '--accent-60', color: '#8888ff'},
+  {name: '--accent-70', color: '#a9a4ff'},
+  {name: '--accent-80', color: '#c0baff'},
+  {name: '--accent-90', color: '#ddd9ff'},
+  {name: '--accent-100', color: '#eceaff'},
+  {name: '--accent-110', color: '#f5f3ff'},
+  {name: '--accent-120', color: '#faf8ff'},
+  {name: '--accent-contrast', color: '#ffffff'}
+]
+`
+);
+
+const formatedJSOutput =
+  highlight(`//Formatted JS output for iterating through a list thats aware of the colors relationships to each other
+const formated = [
+  {
+    name: "base",
+    background: "#000000",
+    shades: [
+      "#111111",
+      "#252525",
+      "#373737",
+      "#484848",
+      "#727272",
+      "#939393",
+      "#adadad",
+      "#c1c1c1",
+      "#dcdcdc",
+      "#ececec",
+      "#f5f5f5",
+      "#f9f9f9",
+    ],
+    foreground: "#ffffff",
+  },
+  {
+    name: "accent",
+    background: "#8888ff",
+    shades: [
+      "#0b0a11",
+      "#191825",
+      "#232237",
+      "#2c2b48",
+      "#424172",
+      "#8888ff",
+      "#a9a4ff",
+      "#c0baff",
+      "#ddd9ff",
+      "#eceaff",
+      "#f5f3ff",
+      "#faf8ff",
+    ],
+    foreground: "#ffffff",
+  },
+]; `);
+
+const umbraReturns = highlight(`const {
+  input: {/*inputed theme values*/},
+  output: {/*raw internal output before formating*/},
+  apply: () => /*format and then apply theme to document*/,
+  format: () => /*format the output into a usefull shape*/,
+  inverse: () => /*inverse the theme - dark/light*/,
+  isDark: () => /*check if the theme is dark, return boolean*/,
+} = umbra(lightTheme)`);
+
+const outputExample = [
+  {
+    label: "Shortened",
+    code: simpleOutput,
+  },
+  {
+    label: "Full",
+    code: simple2Output,
+  },
+  {
+    label: "Flattened",
+    code: simpleJSOutput,
+  },
+  {
+    label: "Formated",
+    code: formatedJSOutput,
+  },
+  {
+    label: "Umbra",
+    code: umbraReturns,
   },
 ];
 </script>
@@ -288,6 +413,12 @@ const lol = [
       >
         Documentation
       </UButton>
+      <ProseCodeInline
+        class="p-1 px-3 rounded-lg gap-3 flex justify-center items-center"
+      >
+        <UIcon name="i-simple-icons-npm" size="lg" />
+        npm i @umbrajs/core
+      </ProseCodeInline>
     </div>
 
     <div class="walkthrough">
@@ -295,7 +426,7 @@ const lol = [
     </div>
 
     <div ref="content" class="content">
-      <Showcase :tabs="lol">
+      <Showcase :tabs="inputExample">
         <ProseP class="tracking-wide font-bold">Input</ProseP>
         <ProseP>
           Umbra is a simple function that typically takes in as few as 2-3
@@ -305,7 +436,7 @@ const lol = [
 
       <UIcon name="i-heroicons-arrow-down" size="lg" class="text-gray-400" />
 
-      <Showcase :code="simpleOutput">
+      <Showcase :tabs="outputExample">
         <ProseP class="tracking-wide font-bold">Output</ProseP>
         <ProseP>
           Generated output is a standardised collection of CSS variables. The

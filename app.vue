@@ -26,11 +26,15 @@ useSeoMeta({
 provide("navigation", navigation);
 
 onMounted(() => {
-  umbra({
+  const theme = umbra({
     foreground: "#ffffff",
     background: "#000000",
     accents: ["#8888ff"],
-  }).apply({
+  });
+
+  console.log("rex77: ", theme.apply());
+
+  theme.apply({
     formater: rgbStrippedFormat,
   });
 });
