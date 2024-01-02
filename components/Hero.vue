@@ -21,29 +21,6 @@ umbra(darkTheme).apply({
   element: document.querySelector("footer")
 });`);
 
-const invertTheme =
-  highlight(`//Manually set your themes light and dark versions
-umbra({
-  foreground: "#ffffff",
-  background: "#000000",
-  accents: ["#8888ff"],
-  inverted: {
-    foreground: "#000000",
-    background: "#ffffff",
-    accents: ["#8888ff"],
-  }
-}).apply()
-
-
-const theme = umbra({
-  foreground: "#ffffff",
-  background: "#000000",
-  accents: ["#ff0000", "#0000ff"],
-});
-
-//Or automatically convert any theme to a dark/light theme
-theme.inverse().apply();`);
-
 const manageThemes = highlight(`
 const darkTheme = {
   foreground: "#ffffff",
@@ -194,6 +171,52 @@ onMounted(() => {
   //   },
   // });
 });
+
+const manualInverse =
+  highlight(`//Manually set your themes light and dark versions
+umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#8888ff"],
+  inverted: {
+    foreground: "#000000",
+    background: "#ffffff",
+    accents: ["#8888ff"],
+  }
+}).apply()`);
+
+const autoInverse = highlight(`const theme = umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#ff0000", "#0000ff"],
+});
+
+//Or automatically convert any theme to a dark/light theme
+theme.inverse().apply();`);
+
+const checkDark = highlight(`const theme = umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#ff0000", "#0000ff"],
+});
+
+//Check if theme is a dark theme
+const isDark = theme.isDark();`);
+
+const manipulateExample = [
+  {
+    label: "Manual",
+    code: manualInverse,
+  },
+  {
+    label: "Automatic",
+    code: autoInverse,
+  },
+  {
+    label: "IsDark",
+    code: checkDark,
+  },
+];
 
 const simpleUmbra = highlight(`umbra({
   foreground: "#ffffff",
@@ -474,7 +497,8 @@ const outputExample = [
         </ProseP>
       </Showcase>
 
-      <Showcase :code="invertTheme">
+      <Showcase :tabs="manipulateExample">
+        <ProseP class="tracking-wide font-bold">Dark/Light</ProseP>
         <ProseP>
           Automatic dark/light mode. You can manually define your own light and
           dark version of a theme, but even without that it can automatically
@@ -484,6 +508,7 @@ const outputExample = [
       </Showcase>
 
       <Showcase :code="apcaTheme">
+        <ProseP class="tracking-wide font-bold">Accessibility</ProseP>
         <ProseP>
           Prioritse accessibility by setting a readabillity target. Calculated
           using the best color contrast standard
@@ -499,6 +524,7 @@ const outputExample = [
       </Showcase>
 
       <Showcase :code="radixTheme">
+        <ProseP class="tracking-wide font-bold">Radix Colors</ProseP>
         <ProseP>
           Perfect parity with
           <ULink
