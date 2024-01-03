@@ -4,22 +4,70 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const complexUmbra2 = highlight(`umbra({
+const complexUmbra2 =
+  highlight(`//Color ranges will be auto generated using numbers to 
+//represent the mixture of the previous color toward 
+//the next known color, but you can replace the 
+//numbers with strict colors to force a shade 
+//to be a specific color and take full control
+
+const customAccent = {
+  shades: [5, 10, 10, 10, 25, 25, 25, 25, 45, "#ececec", 45, 45],
+};
+
+umbra({
   foreground: "#ffffff",
   background: "#000000",
-  accents: [{
-    shades: [5, 10, 10, 10, 25, 25, 25, 25, 45, "#ececec", 45, 45],
-  }],
+  accents: [customAccent],
 }).apply();
+
+//This is also usefull if you want to dictate 
+//where in the range your defined color should be
+//as the system will automatically place 
+//it where it fits best otherwise
 `);
 
-const scaleCode = highlight(`umbra(lightTheme).apply({ 
-  element: document.querySelector("header") 
+const subschemesCode =
+  highlight(`//you can attach multiple themes on diffirent elements
+//this means that you can make anything customizable
+//without rewriting anything
+const header = document.querySelector("header")
+const footer = document.querySelector("footer")
+
+//passing a string instead makes it create a stylesheet
+//with the colors scoped to this class
+const buttons = ".customizable-buttons"
+
+umbra(lightTheme).apply({
+  element: header
 });
 
-umbra(darkTheme).apply({ 
+umbra(darkTheme).apply({
+  element: footer
+});
+
+umbra(buttonTheme).apply({
+  element: buttons
+});`);
+
+const scaleCode = highlight(`umbra(lightTheme).apply({
+  element: document.querySelector("header")
+});
+
+umbra(darkTheme).apply({
   element: document.querySelector("footer")
 });`);
+
+const scaleThemes = [
+  {
+    label: "Simple",
+    code: scaleCode,
+  },
+  {
+    label: "Complex",
+    code: subschemesCode,
+  },
+];
 
 const manageThemes = highlight(`
 const darkTheme = {
@@ -85,17 +133,17 @@ const manualTheme = highlight(`const theme = umbra({
     name: 'red',
     shades:
       [
-        '#140602', 
-        '#281005', 
-        '#3a1408', 
-        '#4b170a', 
-        '#741b0c', 
-        '#ff0000', 
-        '#ff6945', 
-        '#ff9271', 
-        '#ffc4af', 
-        '#ffdfd2', 
-        '#ffede6', 
+        '#140602',
+        '#281005',
+        '#3a1408',
+        '#4b170a',
+        '#741b0c',
+        '#ff0000',
+        '#ff6945',
+        '#ff9271',
+        '#ffc4af',
+        '#ffdfd2',
+        '#ffede6',
         '#fff5f1'
       ]
   }]
@@ -251,6 +299,10 @@ const inputExample = [
     label: "More",
     code: complexUmbra,
   },
+  {
+    label: "Control",
+    code: complexUmbra2,
+  },
 ];
 
 const simpleOutput = highlight(
@@ -336,7 +388,7 @@ const flattened = [
   {name: '--accent-20', color: '#191825'},
   {name: '--accent-30', color: '#232237'},
   {name: '--accent-40', color: '#2c2b48'},
-  {name: '--accent-50', color: '#424172'}, 
+  {name: '--accent-50', color: '#424172'},
   {name: '--accent-60', color: '#8888ff'},
   {name: '--accent-70', color: '#a9a4ff'},
   {name: '--accent-80', color: '#c0baff'},
@@ -500,7 +552,7 @@ export default {
       'accent-20': 'rgb(var(--accent-20) / <alpha-value>)',
       'accent-10': 'rgb(var(--accent-10) / <alpha-value>)',
 
-      // other ranges you might have added 
+      // other ranges you might have added
       // (warning, success, etc)...
     }
   },
@@ -677,7 +729,7 @@ const tailwindExample = [
         </ProseP>
       </Showcase>
 
-      <Showcase :code="scaleCode">
+      <Showcase :tabs="scaleThemes">
         <ProseP class="tracking-wide font-bold">Scale Complexity</ProseP>
         <ProseP>
           Start simple and scale theme complexity infinitely without any

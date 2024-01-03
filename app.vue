@@ -169,4 +169,8 @@ $desktop: 1200px;
 html {
   overflow-x: hidden;
 }
+
+div.prose.code {
+  --tw-prose-pre-bg: rgb(var(--color-gray-900));
+}
 </style>
