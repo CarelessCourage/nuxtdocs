@@ -14,8 +14,11 @@ const complexUmbra2 =
 //a spesific place and take full control
 
 const customAccent = {
-  shades: [5, 10, 10, 10, 25, 25, 25, 25, 45, "#ececec", 45, 45],
+  shades: [5, 10, 10, 10, 25, 25, 25, 25, 45, "#ececec", 45, 45], 
 };
+
+//12 shades per range is the default and reccomended 
+//standard but you can change it
 
 umbra({
   foreground: "#ffffff",
@@ -25,18 +28,18 @@ umbra({
 
 //This is also usefull if you want to dictate 
 //where in the range your defined color should be
-//as the system will automatically place 
-//it where it fits best otherwise
+//as the system will automatically place it 
+//where it fits best otherwise
 `);
 
 const subschemesCode =
-  highlight(`//you can attach multiple themes on diffirent elements
-//this means that you can make anything customizable
-//without rewriting anything
+  highlight(`//You can attach multiple themes on diffirent elements.
+//This means that you can retroactivley make anything 
+//customizable at any time without rewriting anything
 const header = document.querySelector("header")
 const footer = document.querySelector("footer")
 
-//passing a string instead makes it create a stylesheet
+//Passing a string instead makes it create a stylesheet
 //with the colors scoped to this class
 const buttons = ".customizable-buttons"
 
