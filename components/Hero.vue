@@ -6,10 +6,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const complexUmbra2 =
   highlight(`//Color ranges will be auto generated using numbers to 
-//represent the mixture of the previous color toward 
-//the next known color, but you can replace the 
-//numbers with strict colors to force a shade 
-//to be a specific color and take full control
+//represent the percent mixture of the previous color toward 
+//the next known color from background -> foregrond.
+
+//But you can replace the numbers with strict colors 
+//to force a shade to be a specific color in 
+//a spesific place and take full control
 
 const customAccent = {
   shades: [5, 10, 10, 10, 25, 25, 25, 25, 45, "#ececec", 45, 45],
@@ -322,6 +324,9 @@ const simpleOutput = highlight(
 const simple2Output = highlight(
   `/*Example of CSS output expanded for clarity*/
 :root {
+  /*Base Range - 
+  reprents a range of values between background
+  and foreground*/
   --base: #000000;
   --base-10: #111111;
   --base-20: #252525;
@@ -336,6 +341,10 @@ const simple2Output = highlight(
   --base-110: #f5f5f5;
   --base-120: #f9f9f9;
   --base-contrast: #ffffff;
+  /*Accent Range - 
+  All ranges besides the base range are Accent ranges. 
+  An accent range can have custom name but they all work 
+  the same and the generic default is accent*/
   --accent: #ff0000;
   --accent-10: #140602;
   --accent-20: #281005;
@@ -620,7 +629,8 @@ const tailwindExample = [
         <ProseP class="tracking-wide font-bold">Input</ProseP>
         <ProseP>
           Umbra is a simple function that typically takes in as few as 2-3
-          colors. Or many more if you want.
+          colors and auto generates a theme in a standardized pattern. Or you
+          can input many more if you want and take full control.
         </ProseP>
       </Showcase>
 
@@ -639,15 +649,44 @@ const tailwindExample = [
           >
             APCA
           </ULink>
-          standards.
+          readability standards.
         </ProseP>
       </Showcase>
 
       <Showcase :code="manageThemes">
         <ProseP class="tracking-wide font-bold">Manage</ProseP>
         <ProseP>
-          This makes it easy to modify and manage your theme. Switch between
-          themes. Change colors.
+          The Umbra function makes it easy to modify and manage your themes
+          super quick with just a few values. Switch between themes. Change
+          colors. Scale. Make theming dynamic.
+        </ProseP>
+        <ProseP>
+          Imagine if you where doing this manually? You would have to write and
+          organize like 30+ color values every time you tried out a new theme.
+          And it would not be quick to write even one value as it wold be a lot
+          of back and forth.
+        </ProseP>
+        <ProseP>
+          And every time you wanted to try to modify a color you would have to
+          modify every other color also to adjust for the change.
+        </ProseP>
+        <ProseP>
+          This will be really cumbersome even assuming you have done a great job
+          of planning for it which you probably haven't - let's be real. I know
+          because I spent the last 2 years thinking through color theming and
+          even I still run into shit I had not thought through well enough.
+        </ProseP>
+        <ProseP>
+          With umbra you can get started immediatly. It auto generates for you
+          and it does a very good job of it, but the point isnt to be perfect,
+          the point is to be fast and flexible and to let you take over if its
+          ever lacking.
+        </ProseP>
+        <ProseP>
+          Make a new theme in 3 seconds. Try out a small adjustment in 1 second.
+          Take full control when you need. Trust that the solution umbra gives
+          you, through years of testing and thurough thought, is flexible enough
+          to handle pretty much anything no matter the scale or complexity.
         </ProseP>
       </Showcase>
 

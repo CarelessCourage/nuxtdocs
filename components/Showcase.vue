@@ -11,7 +11,9 @@ defineProps<{
 <template>
   <div class="showcase">
     <UCard>
-      <slot />
+      <div class="grid gap-2">
+        <slot />
+      </div>
     </UCard>
     <div class="u-truncated">
       <div class="veil" />

@@ -12,7 +12,7 @@ import { useTheme } from "./useTheme";
 
 export function highlight(code: string, lang = "javascript") {
   return highlighter.codeToHtml(code, {
-    theme: "solarized-light",
+    theme: "slack-dark",
     lang,
   });
 }
