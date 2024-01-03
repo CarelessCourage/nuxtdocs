@@ -396,8 +396,8 @@ const umbraReturns = highlight(`//All options returned when umbra() is called
 const {
   //data
   input: {/*inputed theme values*/},
-  output: {/*input generates an output*/},
-  //actions
+  output: {/*output generated from input*/},
+  //functions
   apply: () => /*format and then apply output to document*/,
   format: () => /*format the output into a usefull shape*/,
   inverse: () => /*inverse the theme - dark/light*/,
@@ -538,6 +538,7 @@ const tailwindExample = [
     <ProseP class="text-gray-400">
       A theme management library to rule them all 💍
     </ProseP>
+    <MetaData />
     <div class="cta">
       <UButton to="/getting-started" icon="i-heroicons-rocket-launch" size="lg">
         Get Started
@@ -600,7 +601,7 @@ const tailwindExample = [
 
       <Showcase :tabs="optionsExample">
         <ProseP class="tracking-wide font-bold">Options</ProseP>
-        <ProseP> Umbra returns a number of useful funcions and data </ProseP>
+        <ProseP> Umbra returns a number of useful functions and data </ProseP>
       </Showcase>
 
       <Showcase :tabs="dataExample">
