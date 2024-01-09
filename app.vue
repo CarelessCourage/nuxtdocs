@@ -26,17 +26,11 @@ useSeoMeta({
 provide("navigation", navigation);
 
 onMounted(() => {
-  const theme = umbra({
-    foreground: "#ffffff",
-    background: "#000000",
-    accents: ["#8888ff"],
-  });
+  const theme = useTheme();
 
-  console.log("rex77: ", theme.apply());
+  theme.apply({});
 
-  theme.apply({
-    formater: rgbStrippedFormat,
-  });
+  //theme.apply();
 });
 </script>
 
@@ -159,7 +153,7 @@ $desktop: 1200px;
   --color-primary-800: var(--accent-30);
   --color-primary-900: var(--accent-20);
   --color-primary-950: var(--accent-10);
-  --color-primary-DEFAULT: var(--color-primary-500);
+  --color-primary-DEFAULT: var(--color-primary-300);
 }
 
 .prose-primary {

@@ -46,7 +46,6 @@ const tabs = computed(() => {
     icon: slot.props?.icon,
     component: slot,
   }));
-  console.log("rex2: ", mapped);
   return mapped || [];
 });
 </script>

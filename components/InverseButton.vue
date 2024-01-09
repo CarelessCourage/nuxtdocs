@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { umbra, rgbStrippedFormat, isDark as isDarkColor } from "@umbrajs/core";
 import { useTheme } from "../composables/useTheme";
 
 defineOptions({
@@ -7,17 +6,13 @@ defineOptions({
 });
 
 const appConfig = useAppConfig();
-const theme = useTheme();
+//const theme = useTheme();
 
 function inverse() {
-  theme.value = umbra(theme.value.scheme)
-    .inverse()
-    .apply({ formater: rgbStrippedFormat }).input;
+  //theme.inverse().apply({});
 }
 
-const isDark = computed(() => {
-  return isDarkColor(theme.value);
-});
+const isDark = computed(() => true);
 </script>
 
 <template>
