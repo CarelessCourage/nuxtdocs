@@ -11,10 +11,7 @@
       <div
         class="hidden lg:flex items-center gap-0.5 ml-auto -my-1 flex-shrink-0"
       >
-        <Kbd>
-          {{ metaSymbol }}
-        </Kbd>
-
+        <Kbd> Ctr </Kbd>
         <Kbd> K </Kbd>
       </div>
     </template>
@@ -24,7 +21,6 @@
 <script setup lang="ts">
 const appConfig = useAppConfig();
 const { toggleDocsSearch } = useUIState();
-const { metaSymbol } = useShortcuts();
 
 withDefaults(
   defineProps<{

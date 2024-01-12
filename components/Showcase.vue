@@ -15,7 +15,7 @@ defineProps<{
         <slot />
       </div>
     </UCard>
-    <Tabs v-if="!code" class="border rounded-lg border-border pb-9">
+    <Tabs v-if="!code">
       <div v-for="(tab, index) in tabs" :key="index" :label="tab.label">
         <Code :code="tab.code" class="px-3" />
       </div>
