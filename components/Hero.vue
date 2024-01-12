@@ -651,7 +651,7 @@ const tailwindExample = [
         </ProseP>
       </Showcase>
 
-      <UIcon name="i-heroicons-arrow-down" size="lg" class="text-gray-400" />
+      <UIcon name="i-heroicons-arrow-down" size="lg" class="text-base-900" />
 
       <Showcase :tabs="outputExample">
         <ProseP class="tracking-wide font-bold">Output</ProseP>
