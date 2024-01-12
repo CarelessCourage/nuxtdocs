@@ -1,29 +1,26 @@
 <script setup lang="ts">
-import { useTheme } from "../composables/useTheme";
+import { useUmbra } from "../composables/useUmbra";
 
 defineOptions({
   inheritAttrs: false,
 });
 
 const appConfig = useAppConfig();
-//const theme = useTheme();
+const theme = useUmbra();
 
 function inverse() {
-  //theme.inverse().apply({});
+  theme.inverse().apply();
 }
 
-const isDark = computed(() => true);
+const isDark = computed(() => theme.isDark);
 </script>
 
 <template>
   <ClientOnly>
-    <UButton
+    <Button
       :icon="isDark ? appConfig.ui.icons.dark : appConfig.ui.icons.light"
-      v-bind="{
-        ...($ui.button.secondary as any),
-        ...$attrs
-      }"
       :aria-label="`Switch to ${isDark ? 'light' : 'dark'} mode`"
+      color="bg-[red]"
       @click="inverse"
     />
   </ClientOnly>

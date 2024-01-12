@@ -10,20 +10,17 @@ defineProps<{
 
 <template>
   <div class="showcase">
-    <UCard>
+    <UCard class="!ring-border pb-3">
       <div class="grid gap-2">
         <slot />
       </div>
     </UCard>
-    <div class="u-truncated">
-      <div class="veil" />
-      <Tabs v-if="!code">
-        <div v-for="(tab, index) in tabs" :key="index" :label="tab.label">
-          <Code :code="tab.code" />
-        </div>
-      </Tabs>
-      <Code v-else :code="code" />
-    </div>
+    <Tabs v-if="!code" class="border rounded-lg border-border pb-9">
+      <div v-for="(tab, index) in tabs" :key="index" :label="tab.label">
+        <Code :code="tab.code" class="px-3" />
+      </div>
+    </Tabs>
+    <Code v-else :code="code" class="border rounded-lg border-border pb-9" />
   </div>
 </template>
 
@@ -33,13 +30,6 @@ defineProps<{
   flex-direction: column;
   gap: 0rem;
   width: 100%;
-}
-
-.u-truncated {
-  position: relative;
-  //max-height: 202px;
-  overflow: hidden;
-  border-radius: var(--radius);
 }
 
 .veil {

@@ -2,13 +2,12 @@
 const config = {
   wrapper: "relative my-5 space-y-6",
   header: "flex items-center relative",
-  border:
-    "absolute bottom-0 inset-x-0 w-full h-px bg-gray-200 dark:bg-gray-800",
+  border: "absolute bottom-0 inset-x-0 w-full h-px bg-base-500",
   tab: {
-    base: "px-4 py-2.5 font-semibold text-sm/6 flex items-center gap-1.5 border-b z-[1] focus-visible:outline-primary",
-    active: "text-primary border-primary",
+    base: "px-4 py-2.5 font-semibold text-sm/6 flex items-center gap-1.5 border-b z-[1] focus-visible:outline-accent-900",
+    active: "text-accent-900 border-accent-900",
     inactive:
-      "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 border-transparent hover:border-gray-300 dark:hover:border-gray-700",
+      "text-base-800 hover:text-base-950 border-transparent hover:border-border-active",
     icon: {
       base: "w-5 h-5 flex-shrink-0",
     },

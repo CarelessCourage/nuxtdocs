@@ -1,4 +1,3 @@
-import type { rgbStrippedFormat } from '@umbrajs/core';
 <script setup lang="ts">
 defineProps({
   href: {

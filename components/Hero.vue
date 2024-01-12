@@ -599,7 +599,7 @@ const tailwindExample = [
     </div>
 
     <ProseH1>UmbraJS</ProseH1>
-    <ProseP class="text-gray-400">
+    <ProseP class="text-base-800">
       A theme management library to rule them all 💍
     </ProseP>
     <MetaData />
@@ -647,8 +647,8 @@ const tailwindExample = [
           results are adjusted against the background colors to meet
           <ULink
             to="https://www.myndex.com/"
-            active-class="text-primary"
-            inactive-class="text-primary-500 hover:text-gray-100"
+            active-class="text-link-active"
+            inactive-class="text-link hover:text-link-active"
           >
             APCA
           </ULink>
@@ -723,8 +723,8 @@ const tailwindExample = [
           using the best color contrast standard
           <ULink
             to="https://www.myndex.com/"
-            active-class="text-primary"
-            inactive-class="text-primary-500 hover:text-gray-100"
+            active-class="text-link-active"
+            inactive-class="text-link hover:text-link-active"
           >
             (APCA).
           </ULink>
@@ -738,8 +738,8 @@ const tailwindExample = [
           Perfect parity with
           <ULink
             to="https://www.radix-ui.com/colors"
-            active-class="text-primary"
-            inactive-class="text-primary-500 hover:text-gray-100"
+            active-class="text-link-active"
+            inactive-class="text-link hover:text-link-active"
           >
             radix-colors.
           </ULink>
@@ -754,7 +754,13 @@ const tailwindExample = [
         <ProseP>
           Format your colors however you want. Defaults to plain hex color.
           Umbra uses
-          <ProseA to="https://github.com/omgovich/colord"> colord </ProseA>
+          <ULink
+            to="https://github.com/omgovich/colord"
+            active-class="text-link-active"
+            inactive-class="text-link hover:text-link-active"
+          >
+            colord
+          </ULink>
           to handle color manipulation. Its a tiny library and using it gives
           you all the power to do whatever you need with the color. colord comes
           with multiple extentions and I reccomend using it alongside umbra if

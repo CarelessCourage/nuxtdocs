@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { useUmbra } from "./composables/useUmbra";
 import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
-import { umbra, rgbStrippedFormat } from "@umbrajs/core";
 
 const { data: navigation } = await useAsyncData("navigation", () =>
   fetchContentNavigation()
@@ -26,11 +26,8 @@ useSeoMeta({
 provide("navigation", navigation);
 
 onMounted(() => {
-  const theme = useTheme();
-
-  theme.apply({});
-
-  //theme.apply();
+  const theme = useUmbra();
+  theme.apply();
 });
 </script>
 
@@ -57,8 +54,8 @@ onMounted(() => {
 <style lang="scss">
 //@import "./css";
 
-* {
-  transition: 0.2s;
+body {
+  transition: 0.8s;
 }
 
 h1,
@@ -156,12 +153,35 @@ $desktop: 1200px;
   --color-primary-DEFAULT: var(--color-primary-300);
 }
 
+:root {
+  --border-subtle: var(--base-30);
+  --border: var(--base-50);
+  --border-active: var(--accent-90);
+
+  --link-subtle: var(--base-90);
+  --link: var(--accent-90);
+  --link-active: var(--accent-100);
+
+  --button-subtle: var(--base-90);
+  --button: var(--accent-90);
+  --button-active: var(--accent-100);
+
+  --button-border-subtle: var(--base-30);
+  --button-border: var(--base-50);
+  --button-border-active: var(--accent-90);
+}
+
+.dark {
+  --ui-foreground: var(--base-120);
+}
+
 .prose-primary {
   --tw-prose-pre-border: rgb(var(--color-gray-900));
 }
 
 html {
   overflow-x: hidden;
+  transition: 0.8s;
 }
 
 div.prose.code {

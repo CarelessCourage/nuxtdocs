@@ -8,7 +8,7 @@ await highlighter.loadLanguage("css");
 await highlighter.loadTheme("slack-dark");
 await highlighter.loadTheme("solarized-light");
 
-import { useTheme } from "./useTheme";
+import { useUmbra } from "./useUmbra";
 
 export function highlight(code: string, lang = "javascript") {
   return highlighter.codeToHtml(code, {
