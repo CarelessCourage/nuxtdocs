@@ -4,12 +4,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-const complexUmbra2 =
-  highlight(`//Color ranges will be auto generated using numbers to 
-//represent the percent mixture of the previous color toward 
-//the next known color from background -> foregrond.
-
-//But you can replace the numbers with strict colors 
+const controlUmbra =
+  highlight(`//But you can replace the numbers with strict colors 
 //to force a shade to be a specific color in 
 //a spesific place and take full control
 
@@ -17,20 +13,42 @@ const customAccent = {
   shades: [5, 10, 10, 10, 25, 25, 25, 25, 45, "#ececec", 45, 45], 
 };
 
-//12 shades per range is the default and reccomended 
-//standard but you can change it
-
 umbra({
   foreground: "#ffffff",
   background: "#000000",
   accents: [customAccent],
-}).apply();
+}).apply();`);
 
-//This is also usefull if you want to dictate 
-//where in the range your defined color should be
-//as the system will automatically place it 
-//where it fits best otherwise
+const controlUmbra2 =
+  highlight(`//12 shades per range is the default and reccomended 
+//standard but you can change it. Assuming you're providing
+//a color through the color attribute rather than 
+//specifying where in the range it goes it will 
+//inject your provided color into index 9 of that range 
+//but you can also change that aswell.
+
+const accentAtIndex9 = {
+  name: "accent2",
+  color: "#ececec", 
+}
+
+umbra({
+  foreground: "#ffffff",
+  background: "#000000",
+  accents: ["#ff0000", customAccent],
+}).apply();
 `);
+
+const controlThemes = [
+  {
+    label: "Control",
+    code: controlUmbra,
+  },
+  {
+    label: "Control2",
+    code: controlUmbra2,
+  },
+];
 
 const subschemesCode =
   highlight(`//You can attach multiple themes on diffirent elements.
@@ -303,10 +321,6 @@ const inputExample = [
   {
     label: "More",
     code: complexUmbra,
-  },
-  {
-    label: "Control",
-    code: complexUmbra2,
   },
 ];
 
@@ -604,17 +618,17 @@ const tailwindExample = [
     </ProseP>
     <MetaData />
     <div class="cta">
-      <UButton to="/getting-started" icon="i-heroicons-rocket-launch" size="lg">
+      <Button to="/getting-started" icon="i-heroicons-rocket-launch" size="lg">
         Get Started
-      </UButton>
-      <UButton
+      </Button>
+      <Button
         to="/getting-started"
         icon="i-simple-icons-nuxtdotjs"
         size="lg"
-        variant="outline"
+        variant="secondary"
       >
         Documentation
-      </UButton>
+      </Button>
       <ProseCodeInline
         class="p-1 px-3 rounded-lg gap-3 flex justify-center items-center"
       >
@@ -653,6 +667,15 @@ const tailwindExample = [
             APCA
           </ULink>
           readability standards.
+        </ProseP>
+      </Showcase>
+
+      <Showcase :tabs="controlThemes">
+        <ProseP class="tracking-wide font-bold">Control</ProseP>
+        <ProseP>
+          Color ranges will be auto generated using numbers to represent the
+          percent mixture of the previous color toward the next known color from
+          background -> foregrond.
         </ProseP>
       </Showcase>
 

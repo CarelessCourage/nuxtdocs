@@ -8,8 +8,8 @@ const { header } = useAppConfig();
 <template>
   <UHeader>
     <template #logo>
-      <h1 class="text-gray-50">Umbra</h1>
-      <UBadge label="Docs" variant="subtle" class="mb-0.5" />
+      <h1 class="text-base-950">Umbra</h1>
+      <UBadge label="Docs" variant="subtle" class="mb-0.5 !text-base-950" />
     </template>
 
     <template v-if="header?.search" #center>
@@ -17,18 +17,15 @@ const { header } = useAppConfig();
     </template>
 
     <template #right>
-      <UDocsSearchButton
-        v-if="header?.search"
-        :label="null"
-        class="lg:hidden"
-      />
+      <DocsSearchButton v-if="header?.search" :label="null" class="lg:hidden" />
 
       <InverseButton />
 
-      <UButton
+      <Button
         v-for="(link, index) of header.links"
         :key="index"
-        v-bind="{ color: 'gray', variant: 'ghost', ...link }"
+        v-bind="{ ...link }"
+        variant="icon"
       />
     </template>
 

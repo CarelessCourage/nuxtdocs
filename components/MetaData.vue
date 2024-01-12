@@ -1,11 +1,7 @@
-<script setup>
-const className = "!bg-base-100 !text-base-950";
-</script>
-
 <template>
   <div class="metadata">
-    <UKbd :class="className"> 6kB Minified </UKbd>
-    <UKbd :class="className"> 2 dependencies </UKbd>
+    <Kbd> 6kB Minified </Kbd>
+    <Kbd> 2 dependencies </Kbd>
   </div>
 </template>
 

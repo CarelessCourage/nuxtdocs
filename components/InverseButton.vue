@@ -18,6 +18,7 @@ const isDark = computed(() => theme.isDark);
 <template>
   <ClientOnly>
     <Button
+      variant="icon"
       :icon="isDark ? appConfig.ui.icons.dark : appConfig.ui.icons.light"
       :aria-label="`Switch to ${isDark ? 'light' : 'dark'} mode`"
       color="bg-[red]"
