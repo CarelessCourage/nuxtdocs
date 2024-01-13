@@ -10,7 +10,7 @@ const props = defineProps({
   },
   to: {
     type: String,
-    default: "/",
+    default: undefined,
   },
   variant: {
     type: String,
@@ -34,10 +34,15 @@ const buttonClass = cn(
 </script>
 
 <template>
-  <ULink :to="to">
+  <ULink v-if="to" :to="to">
     <button :aria-label="ariaLabel" :class="buttonClass">
       <UIcon v-if="icon" :name="icon" />
       <slot />
     </button>
   </ULink>
+
+  <button v-else :aria-label="ariaLabel" :class="buttonClass">
+    <UIcon v-if="icon" :name="icon" />
+    <slot />
+  </button>
 </template>
