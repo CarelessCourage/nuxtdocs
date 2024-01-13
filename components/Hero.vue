@@ -82,7 +82,10 @@ onMounted(() => {
       <ProseH1>Walkthrough</ProseH1>
     </div>
 
-    <Tabs>
+    <Tabs
+      variant="uncontained"
+      head="border border-border rounded-lg overflow-hidden font-extrabold text-lg"
+    >
       <div label="Practice"><Practice /></div>
       <div label="Methodology">Methodology</div>
     </Tabs>

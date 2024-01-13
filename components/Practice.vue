@@ -560,7 +560,7 @@ const tailwindExample = [
 </script>
 
 <template>
-  <div class="content">
+  <div class="tabs-content">
     <Showcase :tabs="inputExample">
       <ProseP class="tracking-wide font-bold">Input</ProseP>
       <ProseP>
@@ -759,13 +759,12 @@ const tailwindExample = [
 </template>
 
 <style scoped>
-.content {
+.tabs-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: var(--space-l);
-  max-inline-size: 50ch;
   text-wrap: balance;
 }
 </style>
