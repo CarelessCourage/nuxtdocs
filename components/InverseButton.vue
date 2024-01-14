@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useUmbra } from "../composables/useUmbra";
-
 defineOptions({
   inheritAttrs: false,
 });

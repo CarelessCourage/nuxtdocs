@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useUmbra } from "./composables/useUmbra";
 import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
 
 const { data: navigation } = await useAsyncData("navigation", () =>
@@ -24,9 +23,9 @@ useSeoMeta({
 });
 
 provide("navigation", navigation);
+const theme = useUmbra();
 
 onMounted(() => {
-  const theme = useUmbra();
   theme.apply();
 });
 </script>

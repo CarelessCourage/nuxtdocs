@@ -16,29 +16,25 @@ const settings = {
   formater: rgb,
 };
 
-export const useUmbra = (scheme = themeInput) => {
-  const input = ref<UmbraInput>(scheme);
-  const stored = useState("umbra", () => input);
+export const useUmbra = defineStore("umbra", () => {
+  const input = ref<UmbraInput>(themeInput);
   const formated = ref<FormatedRange[]>([]);
-  const storedFormated = useState("umbra-formated", () => formated);
   const dark = ref<boolean>(true);
-  const storedDark = useState("umbra-dark", () => dark);
 
   function store(u: any) {
-    stored.value = u.input;
-    storedFormated.value = u.formated;
-    storedDark.value = isDark(u.input);
-    console.log("rex: u", u);
+    input.value = u.input;
+    formated.value = u.formated;
+    dark.value = isDark(u.input);
   }
 
   function inverse() {
-    const u = umbra(stored.value, settings).inverse();
+    const u = umbra(input.value, settings).inverse();
     store(u.format());
     return u;
   }
 
   function apply() {
-    const u = umbra(stored.value, settings).apply();
+    const u = umbra(input.value, settings).apply();
     store(u);
     return u;
   }
@@ -46,23 +42,8 @@ export const useUmbra = (scheme = themeInput) => {
   return {
     apply,
     inverse,
-    input: stored,
-    isDark: storedDark,
-    formated: storedFormated,
+    input,
+    isDark: dark,
+    formated,
   };
-};
-
-// export const useUmbra2 = (scheme = themeInput) => {
-//   const theme = ref<Umbra | null>(null);
-
-//   onMounted(() => {
-//     theme.value = umbra(scheme, {
-//       formater: rgb,
-//       callback: (outputs) => {
-//         console.log("rex: theme set");
-//       },
-//     });
-//   });
-
-//   return theme;
-// };
+});
