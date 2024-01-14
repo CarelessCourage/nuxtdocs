@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxtjs/fontaine",
     "@nuxtjs/google-fonts",
     "nuxt-og-image",
+    "@pinia/nuxt"
   ],
   ui: {
     icons: ["heroicons", "simple-icons"],

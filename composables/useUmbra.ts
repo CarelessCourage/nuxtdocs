@@ -1,4 +1,4 @@
-import type { UmbraInput } from "@umbrajs/core";
+import type { UmbraInput, FormatedRange } from "@umbrajs/core";
 import { umbra, rgb, isDark } from "@umbrajs/core";
 
 const themeInput: UmbraInput = {
@@ -12,31 +12,43 @@ const themeInput: UmbraInput = {
   },
 };
 
+const settings = {
+  formater: rgb,
+};
+
 export const useUmbra = (scheme = themeInput) => {
   const input = ref<UmbraInput>(scheme);
   const stored = useState("umbra", () => input);
+  const formated = ref<FormatedRange[]>([]);
+  const storedFormated = useState("umbra-formated", () => formated);
+  const dark = ref<boolean>(true);
+  const storedDark = useState("umbra-dark", () => dark);
+
+  function store(u: any) {
+    stored.value = u.input;
+    storedFormated.value = u.formated;
+    storedDark.value = isDark(u.input);
+    console.log("rex: u", u);
+  }
 
   function inverse() {
-    const u = umbra(stored.value, {
-      formater: rgb,
-    }).inverse();
-    stored.value = u.input;
+    const u = umbra(stored.value, settings).inverse();
+    store(u.format());
     return u;
   }
 
   function apply() {
-    const u = umbra(stored.value, {
-      formater: rgb,
-    }).apply();
-    stored.value = u.input;
+    const u = umbra(stored.value, settings).apply();
+    store(u);
     return u;
   }
 
   return {
     apply,
     inverse,
-    isDark: computed(() => isDark(stored.value)),
     input: stored,
+    isDark: storedDark,
+    formated: storedFormated,
   };
 };
 

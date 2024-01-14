@@ -86,8 +86,8 @@ onMounted(() => {
       variant="uncontained"
       head="border border-border rounded-lg overflow-hidden font-extrabold text-lg"
     >
+      <div label="Methodology"><Methodology /></div>
       <div label="Practice"><Practice /></div>
-      <div label="Methodology">Methodology</div>
     </Tabs>
   </div>
   <!-- <Ellipsis size="40rem" class="absolute -top-72 -left-48" />
@@ -97,7 +97,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .walkthrough {
-  padding: var(--space-l) 0px var(--space-xl);
+  padding: var(--space-l) 0px var(--space);
 }
 
 .umbra-logo {

@@ -11,16 +11,14 @@ const theme = useUmbra();
 function inverse() {
   theme.inverse().apply();
 }
-
-const isDark = computed(() => theme.isDark);
 </script>
 
 <template>
   <ClientOnly>
     <Button
       variant="icon"
-      :icon="isDark ? appConfig.ui.icons.dark : appConfig.ui.icons.light"
-      :aria-label="`Switch to ${isDark ? 'light' : 'dark'} mode`"
+      :icon="theme.isDark ? appConfig.ui.icons.dark : appConfig.ui.icons.light"
+      :aria-label="`Switch to ${theme.isDark ? 'light' : 'dark'} mode`"
       color="bg-[red]"
       @click="inverse"
     />
