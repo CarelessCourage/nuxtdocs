@@ -14,7 +14,7 @@ function cva(index: number) {
   const inactive =
     "text-base-800 hover:text-base-950 border-transparent hover:border-border-active";
   const base =
-    "px-4 py-2.5 flex items-center gap-1.5 border-b z-[1] focus-visible:outline-accent-900 ";
+    "px-4 first:pl-6 py-2.5 flex items-center gap-1.5 border-b z-[1] focus-visible:outline-accent-900 ";
 
   return cn(base, {
     [active]: selected === index,
