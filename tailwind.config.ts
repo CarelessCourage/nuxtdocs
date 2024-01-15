@@ -7,6 +7,9 @@ export default <Partial<Config>>{
       fontFamily: {
         sans: ["DM Sans", "DM Sans fallback", ...defaultTheme.fontFamily.sans],
       },
+      gridTemplateColumns: {
+        14: "repeat(14, 1fr)",
+      },
       colors: {
         "base-50": "rgb(var(--base) / <alpha-value>)",
         "base-100": "rgb(var(--base-10) / <alpha-value>)",

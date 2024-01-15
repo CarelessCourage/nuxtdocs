@@ -55,20 +55,12 @@ onMounted(() => {
 
     <ProseH1>UmbraJS</ProseH1>
     <ProseP class="text-base-800">
-      A theme management library to rule them all 💍
+      A dynamic theme management library to rule them all 💍
     </ProseP>
     <MetaData />
     <div class="cta">
       <Button to="/getting-started" icon="i-heroicons-rocket-launch" size="lg">
         Get Started
-      </Button>
-      <Button
-        to="/getting-started"
-        icon="i-simple-icons-nuxtdotjs"
-        size="lg"
-        variant="secondary"
-      >
-        Documentation
       </Button>
       <ProseCodeInline
         class="p-1 px-3 rounded-lg gap-3 flex justify-center items-center"

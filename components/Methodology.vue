@@ -1,15 +1,93 @@
 <script setup>
 const theme = useUmbra();
+const cellClass =
+  "h-10 flex rounded-lg border border-border justify-center items-center";
 </script>
 
 <template>
-  <div class="flex gap-1">
-    <div v-for="range in theme.formated" :key="range.name">
-      <p>{{ range?.name }}</p>
-      <div
-        class="w-10 h-10 bg-white border border-border rounded-lg"
-        :style="{ background: `rgb(${range?.background} / 1)` }"
-      />
+  <div class="flex flex-col">
+    <UCard class="!ring-0 border border-border rounded-b-none mb-4">
+      <ProseP class="tracking-wide font-bold">Ranges</ProseP>
+      <ProseP>
+        The Umbra function makes it easy to modify and manage your themes super
+        quick with just a few values. Switch between themes. Change colors.
+        Scale. Make theming dynamic.
+      </ProseP>
+    </UCard>
+    <div class="flex flex-col">
+      <RangePointers />
+
+      <div class="grid grid-cols-14">
+        <div
+          class="flex justify-center items-center border border-border rounded-lg h-10 col-span-2"
+        >
+          bg
+        </div>
+        <div
+          class="flex justify-center items-center border border-border rounded-lg h-10 col-span-3"
+        >
+          panel
+        </div>
+        <div
+          class="flex justify-center items-center border border-border rounded-lg h-10 col-span-4"
+        >
+          border
+        </div>
+        <div
+          class="flex justify-center items-center border border-border rounded-lg h-10 col-span-2"
+        >
+          subtext
+        </div>
+        <div
+          class="flex justify-center items-center border border-border rounded-lg h-10 col-span-3"
+        >
+          text
+        </div>
+      </div>
+
+      <div class="grid grid-cols-14">
+        <div
+          class="flex justify-center items-center border border-border rounded-lg h-10 col-span-5"
+        >
+          background
+        </div>
+        <div
+          class="flex justify-center items-center border border-border rounded-lg h-10 col-span-4"
+        >
+          midground
+        </div>
+        <div
+          class="flex justify-center items-center border border-border rounded-lg h-10 col-span-5"
+        >
+          foreground
+        </div>
+      </div>
+
+      <div class="grid grid-cols-14">
+        <div :class="cellClass">0</div>
+        <div v-for="(color, index) in theme.formated[0]?.shades" :key="index">
+          <div :class="cellClass">{{ index + 1 }}</div>
+        </div>
+        <div :class="cellClass">
+          {{ theme.formated[0]?.shades.length + 1 }}
+        </div>
+      </div>
+
+      <div class="flex flex-col-reverse">
+        <div
+          v-for="range in theme.formated"
+          :key="range.name"
+          class="grid grid-cols-14"
+        >
+          <RangeColor :color="theme.formated[0]?.background" />
+          <RangeColor
+            v-for="color in range.shades"
+            :key="color"
+            :color="color"
+          />
+          <RangeColor :color="range.foreground" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

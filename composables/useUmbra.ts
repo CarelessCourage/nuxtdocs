@@ -4,11 +4,11 @@ import { umbra, rgb, isDark } from "@umbrajs/core";
 const themeInput: UmbraInput = {
   foreground: "#ffffff",
   background: "#000000",
-  accents: ["#9999ff"],
+  accents: ["#9999ff", "#ff9999"],
   inversed: {
     foreground: "#000000",
     background: "#ffffff",
-    accents: ["#ff0000"],
+    accents: ["#ff0000", "#00ff00"],
   },
 };
 
