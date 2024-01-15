@@ -6,7 +6,7 @@
 .circle {
   --color: rgb(var(--accent-50));
   position: absolute;
-  z-index: 20;
+  z-index: 2;
   left: 0px;
   top: -90vw;
   height: 100vw;
