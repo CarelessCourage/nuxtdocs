@@ -1,26 +1,11 @@
 <script setup lang="ts">
-import { useDebounceFn } from "@vueuse/core";
 import { DyePicker } from "@umbrajs/dye";
 import "@umbrajs/dye/dist/style.css";
 const theme = useUmbra();
-
-const fn = useDebounceFn(
-  (color) => {
-    theme.change({
-      background: color.value.toHex(),
-    });
-  },
-  50,
-  { maxWait: 200 }
-);
-
 function goooo(color: any) {
-  console.log("rex: ", color.value.toHex());
-  fn(color);
-
-  // theme.change({
-  //   background: color.value.toHex(),
-  // });
+  theme.change({
+    background: color.value.toHex(),
+  });
 }
 
 const cellClass =

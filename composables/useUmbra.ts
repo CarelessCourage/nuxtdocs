@@ -1,3 +1,4 @@
+import { useDebounceFn } from "@vueuse/core";
 import type { UmbraInput, FormatedRange } from "@umbrajs/core";
 import { umbra, rgb, isDark } from "@umbrajs/core";
 
@@ -39,15 +40,25 @@ export const useUmbra = defineStore("umbra", () => {
     return u;
   }
 
-  function change(i: UmbraInput) {
-    const u = umbra(
-      {
-        ...input.value,
-        ...i,
-      },
-      settings
-    ).apply();
-    store(u);
+  const debouncedChange = useDebounceFn(
+    (scheme) => {
+      const u = umbra(
+        {
+          ...input.value,
+          ...scheme,
+        },
+        settings
+      ).apply();
+      store(u);
+    },
+    50,
+    {
+      maxWait: 200,
+    }
+  );
+
+  function change(scheme: UmbraInput) {
+    debouncedChange(scheme);
   }
 
   return {
