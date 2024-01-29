@@ -2,11 +2,6 @@
 import { DyePicker } from "@umbrajs/dye";
 import "@umbrajs/dye/dist/style.css";
 const theme = useUmbra();
-function goooo(color: any) {
-  theme.change({
-    background: color.value.toHex(),
-  });
-}
 
 const cellClass =
   "h-10 flex rounded-lg border border-border justify-center items-center";
@@ -23,7 +18,33 @@ const cellClass =
       </ProseP>
     </UCard>
     <div class="flex flex-col">
-      <DyePicker default="#ff0000" @change="(value) => goooo(value)" />
+      <DyePicker
+        default="#ff0000"
+        @change="
+          (c) =>
+            theme.change({
+              background: c.value.toHex(),
+            })
+        "
+      />
+      <DyePicker
+        default="#ff0000"
+        @change="
+          (c) =>
+            theme.change({
+              foreground: c.value.toHex(),
+            })
+        "
+      />
+      <DyePicker
+        default="#ff0000"
+        @change="
+          (c) =>
+            theme.change({
+              accents: [c.value.toHex()],
+            })
+        "
+      />
       <RangePointers />
 
       <RangeCells>
