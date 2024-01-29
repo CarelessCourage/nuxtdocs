@@ -39,9 +39,21 @@ export const useUmbra = defineStore("umbra", () => {
     return u;
   }
 
+  function change(i: UmbraInput) {
+    const u = umbra(
+      {
+        ...input.value,
+        ...i,
+      },
+      settings
+    ).apply();
+    store(u);
+  }
+
   return {
     apply,
     inverse,
+    change,
     input,
     isDark: dark,
     formated,

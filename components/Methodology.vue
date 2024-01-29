@@ -1,5 +1,28 @@
-<script setup>
+<script setup lang="ts">
+import { useDebounceFn } from "@vueuse/core";
+import { DyePicker } from "@umbrajs/dye";
+import "@umbrajs/dye/dist/style.css";
 const theme = useUmbra();
+
+const fn = useDebounceFn(
+  (color) => {
+    theme.change({
+      background: color.value.toHex(),
+    });
+  },
+  50,
+  { maxWait: 200 }
+);
+
+function goooo(color: any) {
+  console.log("rex: ", color.value.toHex());
+  fn(color);
+
+  // theme.change({
+  //   background: color.value.toHex(),
+  // });
+}
+
 const cellClass =
   "h-10 flex rounded-lg border border-border justify-center items-center";
 </script>
@@ -7,7 +30,7 @@ const cellClass =
 <template>
   <div class="flex flex-col">
     <UCard class="!ring-0 border border-border rounded-b-none mb-4">
-      <ProseP class="tracking-wide font-bold">Ranges</ProseP>
+      <ProseP class="tracking-wide font-bold"> Ranges </ProseP>
       <ProseP>
         The Umbra function makes it easy to modify and manage your themes super
         quick with just a few values. Switch between themes. Change colors.
@@ -15,9 +38,10 @@ const cellClass =
       </ProseP>
     </UCard>
     <div class="flex flex-col">
+      <DyePicker default="#ff0000" @change="(value) => goooo(value)" />
       <RangePointers />
 
-      <div class="grid grid-cols-14">
+      <RangeCells>
         <div
           class="flex justify-center items-center border border-border rounded-lg h-10 col-span-2"
         >
@@ -43,9 +67,9 @@ const cellClass =
         >
           text
         </div>
-      </div>
+      </RangeCells>
 
-      <div class="grid grid-cols-14">
+      <RangeCells>
         <div
           class="flex justify-center items-center border border-border rounded-lg h-10 col-span-5"
         >
@@ -61,9 +85,9 @@ const cellClass =
         >
           foreground
         </div>
-      </div>
+      </RangeCells>
 
-      <div class="grid grid-cols-14">
+      <RangeCells>
         <div :class="cellClass">0</div>
         <div v-for="(color, index) in theme.formated[0]?.shades" :key="index">
           <div :class="cellClass">{{ index + 1 }}</div>
@@ -71,14 +95,10 @@ const cellClass =
         <div :class="cellClass">
           {{ theme.formated[0]?.shades.length + 1 }}
         </div>
-      </div>
+      </RangeCells>
 
       <div class="flex flex-col-reverse">
-        <div
-          v-for="range in theme.formated"
-          :key="range.name"
-          class="grid grid-cols-14"
-        >
+        <RangeCells v-for="range in theme.formated" :key="range.name">
           <RangeColor :color="theme.formated[0]?.background" />
           <RangeColor
             v-for="color in range.shades"
@@ -86,7 +106,7 @@ const cellClass =
             :color="color"
           />
           <RangeColor :color="range.foreground" />
-        </div>
+        </RangeCells>
       </div>
     </div>
   </div>
