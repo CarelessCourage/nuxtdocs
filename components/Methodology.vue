@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { DyePicker } from "@umbrajs/dye";
 import "@umbrajs/dye/dist/style.css";
 const theme = useUmbra();
 
@@ -23,7 +22,16 @@ const cellClass =
         @change="
           (c) =>
             theme.change({
-              background: c.value.toHex(),
+              background: c.color.toHex(),
+            })
+        "
+      />
+      <!-- <DyePicker
+        default="#ff0000"
+        @change="
+          (c) =>
+            theme.change({
+              foreground: c.color.toHex(),
             })
         "
       />
@@ -32,19 +40,10 @@ const cellClass =
         @change="
           (c) =>
             theme.change({
-              foreground: c.value.toHex(),
+              accents: [c.color.toHex()],
             })
         "
-      />
-      <DyePicker
-        default="#ff0000"
-        @change="
-          (c) =>
-            theme.change({
-              accents: [c.value.toHex()],
-            })
-        "
-      />
+      /> -->
       <RangePointers />
 
       <RangeCells>

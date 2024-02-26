@@ -14,8 +14,8 @@
   "dependencies": {
     "@nuxt/ui-pro": "npm:@nuxt/ui-pro-edge@0.4.2-28327301.722ea75",
     "@nuxtjs/fontaine": "^0.4.1",
-    "@umbrajs/core": "^0.0.453",
-    "@umbrajs/dye": "^0.0.11",
+    "@umbrajs/core": "^0.0.4541",
+    "@umbrajs/dye": "^0.0.155",
     "clsx": "^2.1.0",
     "gsap": "npm:@gsap/shockingly@^3.12.2",
     "sass": "^1.69.5",
