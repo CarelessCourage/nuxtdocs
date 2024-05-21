@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { useDye } from "../composables/useDye";
+import { useDye } from '../composables/useDye'
 
 withDefaults(
   defineProps<{
-    compact?: boolean;
+    compact?: boolean
   }>(),
   {
-    compact: false,
+    compact: false
   }
-);
+)
 
-const dye = useDye();
+const dye = useDye()
 </script>
 
 <template>

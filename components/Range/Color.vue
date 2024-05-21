@@ -1,13 +1,12 @@
-<script setup>
-defineProps({
-  className: {
-    type: String,
-    required: true,
-  },
-  color: {
-    type: String,
-    required: true,
-  },
+<script setup lang="ts">
+interface Props {
+  className?: string;
+  color?: string;
+}
+
+withDefaults(defineProps<Props>(), {
+  className: "#ff0000",
+  color: "255, 0, 0",
 });
 </script>
 

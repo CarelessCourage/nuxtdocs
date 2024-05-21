@@ -17,15 +17,6 @@ const cellClass =
       </ProseP>
     </UCard>
     <div class="flex flex-col">
-      <DyePicker
-        default="#ff0000"
-        @change="
-          (c) =>
-            theme.change({
-              background: c.color.toHex(),
-            })
-        "
-      />
       <!-- <DyePicker
         default="#ff0000"
         @change="
@@ -46,7 +37,7 @@ const cellClass =
       /> -->
       <RangePointers />
 
-      <RangeCells>
+      <!-- <RangeCells>
         <div
           class="flex justify-center items-center border border-border rounded-lg h-10 col-span-2"
         >
@@ -90,7 +81,7 @@ const cellClass =
         >
           foreground
         </div>
-      </RangeCells>
+      </RangeCells> -->
 
       <RangeCells>
         <div :class="cellClass">0</div>

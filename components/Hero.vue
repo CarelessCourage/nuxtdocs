@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
-const hero = ref<HTMLElement>();
-const logo = ref<HTMLElement>();
-const circle = ref<HTMLElement>();
+const hero = ref<HTMLElement>()
+const logo = ref<HTMLElement>()
+const circle = ref<HTMLElement>()
 
 onMounted(() => {
-  if (!process.client) return;
+  if (!process.client) return
 
   // if (!logo.value) return;
   // gsap.to(logo.value, {
@@ -22,28 +22,28 @@ onMounted(() => {
   //   },
   // });
 
-  if (!circle.value) return;
+  if (!circle.value) return
   gsap.to(circle.value, {
     y: 900,
     scrollTrigger: {
       trigger: hero.value,
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-    },
-  });
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true
+    }
+  })
 
-  if (!hero.value) return;
+  if (!hero.value) return
   gsap.to(hero.value, {
     y: 600,
     scrollTrigger: {
       trigger: hero.value,
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-    },
-  });
-});
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true
+    }
+  })
+})
 </script>
 
 <template>
@@ -60,16 +60,10 @@ onMounted(() => {
       </ProseP>
       <MetaData />
       <div class="cta">
-        <Button
-          to="/getting-started"
-          icon="i-heroicons-rocket-launch"
-          size="lg"
-        >
+        <Button to="/getting-started" icon="i-heroicons-rocket-launch" size="lg">
           Get Started
         </Button>
-        <ProseCodeInline
-          class="p-1 px-3 rounded-lg gap-3 flex justify-center items-center"
-        >
+        <ProseCodeInline class="p-1 px-3 rounded-lg gap-3 flex justify-center items-center">
           <UIcon name="i-simple-icons-npm" size="lg" />
           npm i @umbrajs/core
         </ProseCodeInline>
@@ -78,9 +72,7 @@ onMounted(() => {
 
     <div class="hero z-30 relative">
       <!-- <Circle ref="circle" /> -->
-      <div
-        class="vailtop rounded-[3rem] bg-base-100 w-full h-full z-0 absolute top-0"
-      />
+      <div class="vailtop rounded-[3rem] bg-base-100 w-full h-full z-0 absolute top-0" />
       <div class="walkthrough z-30">
         <ProseH1>Walkthrough</ProseH1>
       </div>
