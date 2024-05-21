@@ -59,7 +59,7 @@ const activeColor = ref<'background' | 'foreground' | 'accents'>('background')
   z-index: 10;
   background: rgb(var(--base-10));
   padding-top: 5rem;
-  top: 0;
+  top: -50px;
   transition: top 0.2s;
 }
 

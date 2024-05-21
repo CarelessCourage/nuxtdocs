@@ -12,7 +12,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div
-    :class="cn('h-10 bg-white rounded-lg border border-border', className)"
+    :class="cn('h-10 bg-white rounded-lg border', className)"
     :style="{ background: `rgb(${color} / 1)` }"
   />
 </template>

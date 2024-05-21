@@ -75,7 +75,7 @@ function handleClick() {
   gap: var(--space-xs);
   grid-template-columns: 90px 1fr;
   h2 {
-    text-transform: capitalizes;
+    text-transform: capitalize;
     grid-column: span 2;
   }
   p {

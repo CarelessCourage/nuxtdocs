@@ -20,7 +20,6 @@ onMounted(() => dye.setColor('#ff0000', true))
 
 function change(color: OutputColor) {
   dye.setColor(color)
-  console.log("rex: ", colord(color.hex))
   theme.change({
     [props.activeColor]: colord(color.hex).toHex()
   })
