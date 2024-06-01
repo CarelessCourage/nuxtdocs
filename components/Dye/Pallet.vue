@@ -37,7 +37,6 @@ function handleClick() {
       <p class="name">{{ dye.color.name }}</p>
     </div>
 
-    <div class="shade" style="background: var(--base)"></div>
     <div class="shade" style="background: var(--base-10)"></div>
     <div class="shade" style="background: var(--base-20)"></div>
 

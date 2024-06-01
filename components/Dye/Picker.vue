@@ -30,8 +30,8 @@ function change(color: OutputColor) {
   <div class="!ring-0 border-8 border-base-950 relative z-20">
     <DyeContainer>
       <DyePallet :activeColor="activeColor" />
-      <ColorCanvas :min="0" :max="100" @change="change" class="max-h-32" />
-      <HueCanvas @change="change" class="max-h-32" />
+      <HueCanvas @change="change" />
+      <ColorCanvas :min="75" :max="100" @change="change" />
     </DyeContainer>
   </div>
 </template>

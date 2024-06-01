@@ -12,10 +12,6 @@ const dye = useDye()
 <style lang="scss">
 .container {
   display: grid;
-  grid-template-columns: 1fr 25px;
-  grid-template-rows: auto 1fr;
-  .pallet {
-    grid-column: span 2;
-  }
+  grid-template-columns: 1fr 25px auto;
 }
 </style>
