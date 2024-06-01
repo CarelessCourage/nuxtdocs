@@ -9,10 +9,14 @@ const theme = useUmbra()
 
 interface DyeProps {
   activeColor: 'background' | 'foreground' | 'accents'
+  min?: number
+  max?: number
 }
 
 const props = withDefaults(defineProps<DyeProps>(), {
-  activeColor: 'background'
+  activeColor: 'background',
+  min: 0,
+  max: 100
 })
 
 const dye = useDye()
@@ -30,8 +34,8 @@ function change(color: OutputColor) {
   <div class="!ring-0 border-8 border-base-950 relative z-20">
     <DyeContainer>
       <DyePallet :activeColor="activeColor" />
-      <HueCanvas @change="change" />
-      <ColorCanvas :min="75" :max="100" @change="change" />
+      <HueCanvas :min="min" :max="max" @change="change" />
+      <ColorCanvas :min="min" :max="max" @change="change" />
     </DyeContainer>
   </div>
 </template>

@@ -22,10 +22,14 @@ const emit = defineEmits<{
 
 interface Props {
   width?: number
+  min: number
+  max: number
 }
 
-withDefaults(defineProps<Props>(), {
-  width: 25
+const props = withDefaults(defineProps<Props>(), {
+  width: 25,
+  max: 100,
+  min: 0
 })
 
 const hueCanvas = ref<HTMLCanvasElement | null>(null)
@@ -85,7 +89,7 @@ function hueChange(e: MouseEvent, click = false) {
 
 const change = useDebounce((dye: OutputColor) => {
   const color = { hue: dye.hex }
-  fillColorCanvas({ color }, canvas.colorCanvas().value)
+  fillColorCanvas({ color, options: props }, canvas.colorCanvas().value)
   emit('change', dye)
 })
 
