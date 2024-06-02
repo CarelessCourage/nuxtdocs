@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useDye } from '../../dye/composables/useDye'
+import { DyeKey } from '../../dye/composables/useDye2'
 
 const emit = defineEmits(['click'])
 
@@ -14,12 +14,13 @@ withDefaults(defineProps<Props>(), {
   activeColor: 'background'
 })
 
-const dye = useDye()
+const dye = inject(DyeKey)
+
 const copied = ref(false)
 
 function copyToClipboard() {
   if (!navigator?.clipboard) return
-  navigator.clipboard.writeText(dye.color.hex)
+  navigator.clipboard.writeText(dye.color.value.hex)
   copied.value = true
   setTimeout(() => (copied.value = false), 800)
 }
@@ -33,8 +34,8 @@ function handleClick() {
   <div class="pallet" :class="{ copied }" @click="handleClick">
     <div class="content">
       <ProseH2>{{ activeColor }}</ProseH2>
-      <p>{{ dye.color.hex }}</p>
-      <p class="name">{{ dye.color.name }}</p>
+      <p>{{ dye.color.value.hex }}</p>
+      <p class="name">{{ dye.color.value.name }}</p>
     </div>
 
     <div class="shade" style="background: var(--base-10)"></div>

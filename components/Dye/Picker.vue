@@ -4,7 +4,7 @@ import type { OutputColor } from '@umbrajs/dye'
 
 import HueCanvas from '../../dye/components/Canvas/HueCanvas.vue'
 import ColorCanvas from '../../dye/components/Canvas/ColorCanvas.vue'
-import { useDye } from '../../dye/composables/useDye'
+import { DyeKey } from '../../dye/composables/useDye2'
 const theme = useUmbra()
 
 interface DyeProps {
@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<DyeProps>(), {
   max: 100
 })
 
-const dye = useDye()
+const dye = inject(DyeKey)
 onMounted(() => dye.setColor('#ff0000', true))
 
 function change(color: OutputColor) {
@@ -32,10 +32,10 @@ function change(color: OutputColor) {
 
 <template>
   <div class="!ring-0 border-8 border-base-950 relative z-20">
-    <DyeContainer>
+    <DyeProvider>
       <DyePallet :activeColor="activeColor" />
       <HueCanvas :min="min" :max="max" @change="change" />
       <ColorCanvas :min="min" :max="max" @change="change" />
-    </DyeContainer>
+    </DyeProvider>
   </div>
 </template>

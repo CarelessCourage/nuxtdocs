@@ -4,7 +4,7 @@ import { colord } from 'colord'
 import { canvasPixelColor, outsideCanvas, responsiveCanvas } from '../../composables/canvas'
 
 import type { HexType, OutputColor } from '../../composables/canvas'
-import { useDye, useDyeStore, useColorCanvas } from '../../composables/useDye'
+import { DyeKey, CanvasKey, StoreKey } from '../../composables/useDye2'
 import { colorName } from '../../composables/colorName'
 import { fillColorCanvas } from '../../composables/gradient'
 import { useDebounce } from '../../composables/utils'
@@ -24,9 +24,9 @@ const props = withDefaults(defineProps<Props>(), {
   max: 100
 })
 
-const canvas = useColorCanvas()
-const store = useDyeStore()
-const dye = useDye()
+const dye = inject(DyeKey)
+const store = inject(StoreKey)
+const canvas = inject(CanvasKey)
 
 const position = ref({ x: 0, y: 0 })
 const change = useDebounce((dye) => emit('change', dye), 0)
@@ -54,7 +54,7 @@ const { inside } = outsideCanvas({
   updateCanvas
 })
 
-function getHue(color = dye.color.hex) {
+function getHue(color = dye.color.value.hex) {
   const hsv = colord(color).toHsv()
   return colord({ h: hsv.h, s: 100, v: 100 }).toHex()
 }
@@ -78,7 +78,7 @@ function getPercent(percent: number, height?: number) {
 }
 
 function updateHandle() {
-  const color = colord(dye.color.hex)
+  const color = colord(dye.color.value.hex)
   const hsl = color.toHsl()
   position.value = {
     x: getPercent(hsl.s, width.value),
@@ -99,7 +99,7 @@ watch(
 
 <template>
   <div class="color-canvas-wrapper">
-    <Handle :position="position" :color="dye.color" />
+    <Handle :position="position" :color="dye.color.value" />
     <canvas
       :ref="(el) => canvas.setColorCanvas(el as HTMLCanvasElement)"
       class="color-canvas"

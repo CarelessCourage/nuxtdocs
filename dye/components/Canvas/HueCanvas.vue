@@ -4,7 +4,7 @@ import { ref, onMounted, watch } from 'vue'
 import { getDimentions } from '../../composables/canvas'
 import { outsideCanvas, canvasPixelColor, responsiveCanvas } from '../../composables/canvas'
 import type { HexType, OutputColor } from '../../composables/canvas'
-import { useDye, useDyeStore, useColorCanvas } from '../../composables/useDye'
+import { DyeKey, CanvasKey, StoreKey } from '../../composables/useDye2'
 import { colorName } from '../../composables/colorName'
 import { fillColorCanvas } from '../../composables/gradient'
 import { useDebounce } from '../../composables/utils'
@@ -35,9 +35,9 @@ const props = withDefaults(defineProps<Props>(), {
 const hueCanvas = ref<HTMLCanvasElement | null>(null)
 const position = ref({ x: 30, y: 70 })
 
-const dye = useDye()
-const store = useDyeStore()
-const canvas = useColorCanvas()
+const dye = inject(DyeKey)
+const store = inject(StoreKey)
+const canvas = inject(CanvasKey)
 
 const { inside } = outsideCanvas({
   canvas: hueCanvas,
@@ -57,7 +57,7 @@ function hueGradient(
   return gradient
 }
 
-function fillHueCanvas(color: string = dye.color.hex) {
+function fillHueCanvas(color: string = dye.color.value.hex) {
   if (!hueCanvas.value) return
   const ctx = hueCanvas.value?.getContext('2d', { willReadFrequently: true })
   if (ctx === null) return
@@ -69,7 +69,7 @@ function fillHueCanvas(color: string = dye.color.hex) {
 }
 
 watch(
-  () => dye.color.hex,
+  () => dye.color.value.hex,
   (color) => {
     const isActive = store.isActiveCanvas(hueCanvas.value)
     if (!isActive) return
@@ -131,7 +131,7 @@ function huePercent(hue: number, height: number) {
 }
 
 function getHandlePosition() {
-  const hue = colord(dye.color.hex).toHsl().h
+  const hue = colord(dye.color.value.hex).toHsl().h
   return {
     y: huePercent(hue, canvasHeight.value),
     x: 0
@@ -143,7 +143,7 @@ onMounted(() => {
   setCenterHandle()
 
   updateHandle({
-    hex: dye.color.hex,
+    hex: dye.color.value.hex,
     position: getHandlePosition()
   })
 })
@@ -152,7 +152,7 @@ watch(
   () => dye.handleUpdates,
   () => {
     updateHandle({
-      hex: dye.color.hex,
+      hex: dye.color.value.hex,
       position: getHandlePosition()
     })
   }
@@ -161,7 +161,7 @@ watch(
 
 <template>
   <div class="hue-canvas-wrapper">
-    <Handle :position="position" :color="dye.color" />
+    <Handle :position="position" :color="dye.color.value" />
     <canvas
       ref="hueCanvas"
       class="hue-canvas"
