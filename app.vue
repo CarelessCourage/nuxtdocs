@@ -1,33 +1,31 @@
 <script setup lang="ts">
-import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
+import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
-const { data: navigation } = await useAsyncData("navigation", () =>
-  fetchContentNavigation()
-);
-const { data: files } = useLazyFetch<ParsedContent[]>("/api/search.json", {
+const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation())
+const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', {
   default: () => [],
-  server: false,
-});
+  server: false
+})
 
 useHead({
-  meta: [{ name: "viewport", content: "width=device-width, initial-scale=1" }],
-  link: [{ rel: "icon", href: "/favicon.ico" }],
+  meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+  link: [{ rel: 'icon', href: '/favicon.ico' }],
   htmlAttrs: {
-    lang: "en",
-  },
-});
+    lang: 'en'
+  }
+})
 
 useSeoMeta({
-  ogSiteName: "UmbraJS - Docs",
-  twitterCard: "summary_large_image",
-});
+  ogSiteName: 'UmbraJS - Docs',
+  twitterCard: 'summary_large_image'
+})
 
-provide("navigation", navigation);
-const theme = useUmbra();
+provide('navigation', navigation)
+const theme = useUmbra()
 
 onMounted(() => {
-  theme.apply();
-});
+  theme.apply()
+})
 </script>
 
 <template>
@@ -172,6 +170,7 @@ $desktop: 1200px;
 
 .dark {
   --ui-foreground: var(--base-120);
+  --ui-background: var(--base);
 }
 
 .prose-primary {

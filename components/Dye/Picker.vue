@@ -20,7 +20,20 @@ const props = withDefaults(defineProps<DyeProps>(), {
 })
 
 const dye = useDye()
-onMounted(() => dye.setColor('#ff0000', true))
+const umbra = useUmbra()
+onMounted(() => {
+  const base = umbra.formated.find((color) => color.name === 'base')
+  const accent = umbra.formated.find((color) => color.name === 'accent')
+
+  const bg = base.background
+  const fg = base.foreground
+  const acc = accent.background
+
+  const c = colord(bg).toHex()
+
+  console.log('rex: ', c)
+  dye.setColor(c, true)
+})
 
 function change(color: OutputColor) {
   dye.setColor(color)

@@ -57,7 +57,7 @@ const activeColor = ref<'background' | 'foreground' | 'accents'>('background')
 .wrapper {
   position: absolute;
   z-index: 10;
-  background: rgb(var(--base-10));
+  background: rgb(var(--ui-background));
   padding-top: 5rem;
   top: -50px;
   transition: top 0.2s;

@@ -72,7 +72,7 @@ onMounted(() => {
 
     <div class="hero z-30 relative">
       <!-- <Circle ref="circle" /> -->
-      <div class="vailtop rounded-[3rem] bg-base-100 w-full h-full z-0 absolute top-0" />
+      <div class="vailtop rounded-[3rem] w-full h-full z-0 absolute top-0" />
       <div class="walkthrough z-30">
         <ProseH1>Walkthrough</ProseH1>
       </div>
@@ -93,9 +93,10 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .vailtop {
-  --color: rgb(var(--base-10));
+  --color: rgb(var(--ui-background));
   box-shadow: 0px -150px 400px 100px var(--color);
   //transition: box-shadow 1.8s ease-in-out, background 1.8s ease-in-out;
+  background: var(--color);
 }
 
 .walkthrough {
