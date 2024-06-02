@@ -48,7 +48,8 @@ export const useUmbra = defineStore('umbra', () => {
       settings: settings,
       ...input.value
     }).inverse()
-    return store(theme.format())
+    const output = theme.apply()
+    return store(output)
   }
 
   return {

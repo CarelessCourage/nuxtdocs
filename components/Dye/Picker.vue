@@ -5,7 +5,6 @@ import type { OutputColor } from '@umbrajs/dye'
 import HueCanvas from '../../dye/components/Canvas/HueCanvas.vue'
 import ColorCanvas from '../../dye/components/Canvas/ColorCanvas.vue'
 import { useDye } from '../../dye/composables/useDye'
-const theme = useUmbra()
 
 interface DyeProps {
   activeColor: 'background' | 'foreground' | 'accents'
@@ -20,19 +19,22 @@ const props = withDefaults(defineProps<DyeProps>(), {
 })
 
 const dye = useDye()
-const umbra = useUmbra()
+const theme = useUmbra()
 onMounted(() => {
-  const base = umbra.formated.find((color) => color.name === 'base')
-  const accent = umbra.formated.find((color) => color.name === 'accent')
+  const base = theme.formated.find((color) => color.name === 'base')
+  const accent = theme.formated.find((color) => color.name === 'accent')
 
-  const bg = base.background
-  const fg = base.foreground
-  const acc = accent.background
+  const bg = colord(`rgb(${base.background})`).toHex()
+  const fg = colord(`rgb(${base.foreground})`).toHex()
+  const acc = colord(`rgb(${accent.background})`).toHex()
 
-  const c = colord(bg).toHex()
+  const isBg = props.activeColor === 'background'
+  const isFg = props.activeColor === 'foreground'
+  const isAc = props.activeColor === 'accents'
 
-  console.log('rex: ', c)
-  dye.setColor(c, true)
+  if (isBg) dye.setColor(bg, true)
+  if (isFg) dye.setColor(fg, true)
+  if (isAc) dye.setColor(acc, true)
 })
 
 function change(color: OutputColor) {

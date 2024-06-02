@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { colord } from 'colord'
+import { useDye } from '../../dye/composables/useDye'
+
 const theme = useUmbra()
+const dye = useDye()
 const cellClass = 'flex justify-center items-start relative'
 
 function cva(active: boolean) {
@@ -10,6 +14,23 @@ function cva(active: boolean) {
 }
 
 const activeColor = ref<'background' | 'foreground' | 'accents'>('background')
+
+watch(activeColor, (active) => {
+  const base = theme.formated.find((color) => color.name === 'base')
+  const accent = theme.formated.find((color) => color.name === 'accent')
+
+  const bg = colord(`rgb(${base.background})`).toHex()
+  const fg = colord(`rgb(${base.foreground})`).toHex()
+  const acc = colord(`rgb(${accent.background})`).toHex()
+
+  const isBg = active === 'background'
+  const isFg = active === 'foreground'
+  const isAc = active === 'accents'
+
+  if (isBg) dye.setColor(bg, true)
+  if (isFg) dye.setColor(fg, true)
+  if (isAc) dye.setColor(acc, true)
+})
 </script>
 
 <template>

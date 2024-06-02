@@ -2,33 +2,33 @@
 defineProps({
   size: {
     type: String,
-    default: "40rem",
+    default: '40rem'
   },
   zIndex: {
     type: String,
-    default: "10",
+    default: '10'
   },
   top: {
     type: String,
-    default: "auto",
+    default: 'auto'
   },
   bottom: {
     type: String,
-    default: "auto",
+    default: 'auto'
   },
   left: {
     type: String,
-    default: "auto",
+    default: 'auto'
   },
   right: {
     type: String,
-    default: "auto",
+    default: 'auto'
   },
   className: {
     type: String,
-    default: "",
-  },
-});
+    default: ''
+  }
+})
 </script>
 
 <template>
@@ -44,7 +44,7 @@ defineProps({
   width: v-bind(size);
   height: v-bind(size);
   filter: blur(10rem);
-  opacity: 0.7;
+  opacity: 1;
   border-radius: 80rem;
   overflow: hidden;
 }
@@ -52,12 +52,7 @@ defineProps({
 .ellipsis .ellipsis-item {
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    97.62deg,
-    var(--accent-10) 2.27%,
-    var(--accent-50) 50.88%,
-    var(--accent2-70) 98.48%
-  );
+  background: linear-gradient(97.62deg, var(--accent) 0.27%, var(--accent) 70%, var(--accent) 100%);
 }
 </style>
 W

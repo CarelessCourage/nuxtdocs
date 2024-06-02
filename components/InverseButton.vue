@@ -1,13 +1,13 @@
 <script setup lang="ts">
 defineOptions({
-  inheritAttrs: false,
-});
+  inheritAttrs: false
+})
 
-const appConfig = useAppConfig();
-const theme = useUmbra();
+const appConfig = useAppConfig()
+const theme = useUmbra()
 
 function inverse() {
-  theme.inverse().apply();
+  theme.inverse()
 }
 </script>
 
