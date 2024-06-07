@@ -46,11 +46,12 @@ function change(color: OutputColor) {
 </script>
 
 <template>
-  <div class="!ring-0 border-8 border-base-950 relative z-20">
-    <DyeContainer>
+  <div class="relative z-20 !ring-0 border-8 border-base-950">
+    <DyeContainer class="">
       <DyePallet :activeColor="activeColor" />
       <HueCanvas :min="min" :max="max" @change="change" />
       <ColorCanvas :min="min" :max="max" @change="change" />
     </DyeContainer>
+    <slot />
   </div>
 </template>

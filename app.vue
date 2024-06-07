@@ -30,7 +30,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <Header />
+    <!-- <Header /> -->
 
     <UMain>
       <NuxtLayout>

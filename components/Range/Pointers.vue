@@ -34,7 +34,13 @@ watch(activeColor, (active) => {
 </script>
 
 <template>
-  <DyePicker :activeColor="activeColor" />
+  <DyePicker :activeColor="activeColor">
+    <div class="flex bg-base-400 border-t-2 border-base-950">
+      <Button variant="icon" class="rounded-none">background</Button>
+      <Button variant="icon" class="rounded-none">foreground</Button>
+      <Button variant="icon" class="rounded-none">accents</Button>
+    </div>
+  </DyePicker>
 
   <RangeCells>
     <div :class="cva(true)">
