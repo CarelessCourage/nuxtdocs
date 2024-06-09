@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { OutputColor } from '@umbrajs/dye'
+import { umbra } from '../../core'
 import { colord } from 'colord'
 import { useDye } from '../../dye/composables/useDye'
 
@@ -13,32 +15,36 @@ function cva(active: boolean) {
   })
 }
 
+function getColors() {
+  const base = theme.formated.find((color) => color.name === 'base')
+  const accent = theme.formated.find((color) => color.name === 'accent')
+  return {
+    bg: colord(`rgb(${base.background})`).toHex(),
+    fg: colord(`rgb(${base.foreground})`).toHex(),
+    ac: colord(`rgb(${accent.background})`).toHex()
+  }
+}
+
 const activeColor = ref<'background' | 'foreground' | 'accents'>('background')
 
 watch(activeColor, (active) => {
-  const base = theme.formated.find((color) => color.name === 'base')
-  const accent = theme.formated.find((color) => color.name === 'accent')
-
-  const bg = colord(`rgb(${base.background})`).toHex()
-  const fg = colord(`rgb(${base.foreground})`).toHex()
-  const acc = colord(`rgb(${accent.background})`).toHex()
-
+  const { bg, fg, ac } = getColors()
   const isBg = active === 'background'
   const isFg = active === 'foreground'
   const isAc = active === 'accents'
 
   if (isBg) dye.setColor(bg, true)
   if (isFg) dye.setColor(fg, true)
-  if (isAc) dye.setColor(acc, true)
+  if (isAc) dye.setColor(ac, true)
 })
 </script>
 
 <template>
   <DyePicker :activeColor="activeColor">
     <div class="flex bg-base-400 border-t-2 border-base-950">
-      <Button variant="icon" class="rounded-none">background</Button>
-      <Button variant="icon" class="rounded-none">foreground</Button>
-      <Button variant="icon" class="rounded-none">accents</Button>
+      <ColorButton color="background" :active="activeColor"/>
+      <ColorButton color="foreground" :active="activeColor"/>
+      <ColorButton color="accents" :active="activeColor"/>
     </div>
   </DyePicker>
 

@@ -18,6 +18,11 @@ const props = withDefaults(defineProps<DyeProps>(), {
   max: 100
 })
 
+
+const emit = defineEmits<{
+  (e: 'change', props: OutputColor): void
+}>()
+
 const dye = useDye()
 const theme = useUmbra()
 onMounted(() => {
@@ -38,6 +43,7 @@ onMounted(() => {
 })
 
 function change(color: OutputColor) {
+  emit('change', color)
   dye.setColor(color)
   theme.change({
     [props.activeColor]: colord(color.hex).toHex()

@@ -32,7 +32,7 @@ interface MoveAwayFrom {
 const stored = {
   readability: defaultSettings.readability || 11,
   iterations: defaultSettings.iterations || 15,
-  power: defaultSettings.power || 15
+  power: defaultSettings.power || 1
 }
 
 function apcaContrast(fg: string | Colord, bg: string | Colord) {
@@ -42,7 +42,7 @@ function apcaContrast(fg: string | Colord, bg: string | Colord) {
 }
 
 export const getReadability = (fg: string | Colord, bg: string | Colord) => {
-  return apcaContrast(fg, bg)
+  return Math.abs(apcaContrast(fg, bg))
 }
 
 export const getReadable = ({
@@ -60,7 +60,8 @@ export const getReadable = ({
     iterations: iterations || stored.iterations,
     power: power || stored.power,
     condition: (c) => {
-      const current = Math.abs(getReadability(c, contrast))
+      const current = getReadability(c, contrast)
+      console.log("rex: ", current);
       return current > (readability || stored.readability)
     }
   })
@@ -71,7 +72,7 @@ export function increaseContrastUntil({
   contrast,
   condition,
   iterations = 15,
-  power = 15
+  power = 1
 }: IncreaseContrastUntil) {
   let newColor = color
   let count = 0
@@ -86,15 +87,15 @@ export function increaseContrastUntil({
   return newColor
 }
 
-const increaseContrast = ({ color, contrast, val = 100 }: MoveAwayFrom) => {
+const increaseContrast = ({ color, contrast, val = 1 }: MoveAwayFrom) => {
   const same = contrast ? color.isDark() === contrast.isDark() : true
   return same
     ? color.isDark()
       ? color.lighten(val)
       : color.darken(val)
     : contrast?.isDark()
-    ? color.lighten(val)
-    : color.darken(val)
+      ? color.lighten(val)
+      : color.darken(val)
 }
 
 export function mostReadable(color: Colord, colors: Colord[]) {

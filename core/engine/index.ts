@@ -76,6 +76,12 @@ function umbraAdjust(scheme = defaultScheme) {
     background
   })
 
+  console.log("rex: ", {
+    background: background.toHex(),
+    foreground: foreground.toHex()
+  });
+  
+
   const accents = Array.isArray(scheme.accents) ? scheme.accents : [scheme.accents]
   return {
     accents,

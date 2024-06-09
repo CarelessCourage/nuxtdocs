@@ -28,7 +28,7 @@ export function randomScheme(randomSettings: RandomSettings = { amount: 1 }): Um
 }
 
 function getReadable(shade: Colord, color: Colord, index: number) {
-  const readability = Math.abs(getReadability(shade, color))
+  const readability = getReadability(shade, color)
   return { readability, index }
 }
 
