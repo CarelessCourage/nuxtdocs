@@ -53,3 +53,14 @@ export function getStrings(range: (number | string)[]) {
     return acc
   }, [] as string[])
 }
+
+interface Fallback {
+  fallback: number
+  number?: number
+}
+
+export function fallback({ number, fallback }: Fallback) {
+  const isUndefined = typeof number === 'undefined'
+  if (isUndefined) return fallback
+  return number
+}

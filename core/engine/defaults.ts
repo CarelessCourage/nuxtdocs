@@ -1,8 +1,6 @@
 import type { UmbraScheme, UmbraSettings } from './types'
 
 export const defaultSettings: UmbraSettings = {
-  power: 0.15,
-  iterations: 15,
   readability: 70,
   insertion: 9,
   shades: [5, 5, 5, 5, 15, 10, 10, 25, 30, 25, 25, 25],

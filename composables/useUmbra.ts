@@ -1,4 +1,5 @@
 import { useDebounceFn } from '@vueuse/core'
+import type { Promisify } from '@vueuse/core'
 import type { UmbraInput, FormatedRange, UmbraOutputs } from '../core'
 import { umbra, rgb, isDark } from '../core'
 
@@ -17,13 +18,33 @@ const themeInput: UmbraInput = {
   }
 }
 
+interface UseUmbra {
+  input: globalThis.Ref<UmbraInput>
+  formated: globalThis.Ref<FormatedRange[]>
+  isDark: globalThis.Ref<boolean>
+  inverse: () => UmbraOutputs
+  change: (scheme: UmbraInput) => Promisify<UmbraOutputs>
+  apply: (scheme?: UmbraInput) => UmbraOutputs
+}
+
 export const useUmbra = defineStore('umbra', () => {
   const input = ref<UmbraInput>(themeInput)
   const formated = ref<FormatedRange[]>([])
   const dark = ref<boolean>(true)
+  let settings = undefined
 
   function store(theme: UmbraOutputs) {
-    input.value = theme.input
+    input.value = {
+      background: theme.input.background,
+      foreground: theme.input.foreground,
+      accents: theme.input.accents,
+      inversed: {
+        background: theme.input.inversed.background,
+        foreground: theme.input.inversed.foreground,
+        accents: theme.input.inversed.accents
+      }
+    }
+    settings = theme.input.settings
     formated.value = theme.formated
     dark.value = isDark(theme.input.background)
     return theme
@@ -59,5 +80,5 @@ export const useUmbra = defineStore('umbra', () => {
     inverse,
     change: (scheme: UmbraInput) => debounced(scheme),
     apply: (scheme?: UmbraInput) => apply(scheme)
-  }
+  } as UseUmbra
 })

@@ -7,6 +7,7 @@ import type { Formater, UmbraOutputs, AttachProps } from './primitives/format'
 import { inverse, isDark } from './primitives/scheme'
 import { getReadable } from './primitives/color'
 import { umbraGenerate } from './generator'
+import { fallback } from './primitives/utils'
 
 import type { Alias } from './primitives/attach'
 
@@ -69,13 +70,11 @@ function insertFallbacks(scheme: UmbraInput = defaultScheme): UmbraScheme {
 function umbraAdjust(scheme = defaultScheme) {
   const background = colord(scheme.background)
   const foreground = getReadable({
-    readability: scheme.settings?.readability || 4,
-    iterations: scheme.settings?.iterations || 15,
-    power: scheme.settings?.power || 15,
+    readability: fallback({ number: scheme.settings?.readability, fallback: 4 }),
     foreground: colord(scheme.foreground),
     background
   })
-  
+
   const accents = Array.isArray(scheme.accents) ? scheme.accents : [scheme.accents]
   return {
     accents,

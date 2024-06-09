@@ -1,20 +1,17 @@
 <script setup lang="ts">
-import { umbra } from '../core'
 import Range from '../components/Range/index.vue'
 import { useUmbra } from '../composables/useUmbra'
+import { umbra, rgb, isDark } from '../core'
 
 const theme = useUmbra()
 
 theme.apply({
   background: '#000000',
-  foreground: '#000000',
-  settings: {
-    readability: 1
-  }
+  foreground: '#000000'
 })
 
 function inverse() {
-  theme.inverse().apply()
+  theme.inverse()
 }
 </script>
 
