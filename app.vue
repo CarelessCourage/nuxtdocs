@@ -24,7 +24,7 @@ provide('navigation', navigation)
 const theme = useUmbra()
 
 onMounted(() => {
-  theme.apply()
+  //theme.apply()
 })
 </script>
 

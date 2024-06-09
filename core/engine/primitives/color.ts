@@ -54,17 +54,28 @@ export const getReadable = ({
 }: ColorRawRange) => {
   const color = colord(foreground)
   const contrast = colord(background)
-  return increaseContrastUntil({
+
+  const lol = increaseContrastUntil({
     color,
     contrast,
     iterations: iterations || stored.iterations,
-    power: power || stored.power,
+    power: 1, //power || stored.power,
+    readability: readability || stored.readability,
     condition: (c) => {
       const current = getReadability(c, contrast)
-      console.log("rex: ", current);
+      console.log("rex condition: ", current);
+      
       return current > (readability || stored.readability)
     }
   })
+
+  // console.log("rex: ", {
+  //   background: color.toHex(),
+  //   foreground: lol.toHex(),
+  //   passedforg: contrast.toHex(),
+  // });
+  
+  return lol
 }
 
 export function increaseContrastUntil({
@@ -72,18 +83,27 @@ export function increaseContrastUntil({
   contrast,
   condition,
   iterations = 15,
+  readability,
   power = 1
 }: IncreaseContrastUntil) {
   let newColor = color
   let count = 0
+  if(condition(newColor, count)) return newColor
   while (!condition(newColor, count) && count < iterations) {
     count += 1
+    console.log("rex: ", power)
     newColor = increaseContrast({
       val: power,
       color: newColor,
       contrast
     })
   }
+
+  console.log("rex: ", {
+    old: color.toHex(),
+    new: newColor.toHex(),
+    readability: readability
+  })
   return newColor
 }
 
