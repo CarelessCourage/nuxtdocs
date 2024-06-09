@@ -3,7 +3,6 @@ defineOptions({
   inheritAttrs: false
 })
 
-const appConfig = useAppConfig()
 const theme = useUmbra()
 
 function inverse() {
@@ -13,12 +12,6 @@ function inverse() {
 
 <template>
   <ClientOnly>
-    <Button
-      variant="icon"
-      :icon="theme.isDark ? appConfig.ui.icons.dark : appConfig.ui.icons.light"
-      :aria-label="`Switch to ${theme.isDark ? 'light' : 'dark'} mode`"
-      color="bg-[red]"
-      @click="inverse"
-    />
+    <InverseBtn :isDark="theme.isDark" @change="inverse" />
   </ClientOnly>
 </template>
