@@ -30,7 +30,6 @@ watch(activeColor, (active) => {
   const isBg = active === 'background'
   const isFg = active === 'foreground'
   const isAc = active === 'accents'
-
   if (isBg) dye.setColor(bg, true)
   if (isFg) dye.setColor(fg, true)
   if (isAc) dye.setColor(ac, true)
@@ -40,9 +39,17 @@ watch(activeColor, (active) => {
 <template>
   <DyePicker :activeColor="activeColor">
     <div class="flex bg-base-400 border-t-2 border-base-950">
-      <ColorButton color="background" :active="activeColor" />
-      <ColorButton color="foreground" :active="activeColor" />
-      <ColorButton color="accents" :active="activeColor" />
+      <ColorButton
+        color="background"
+        :active="activeColor"
+        @click="() => (activeColor = 'background')"
+      />
+      <ColorButton
+        color="foreground"
+        :active="activeColor"
+        @click="() => (activeColor = 'foreground')"
+      />
+      <ColorButton color="accents" :active="activeColor" @click="() => (activeColor = 'accents')" />
     </div>
   </DyePicker>
 
