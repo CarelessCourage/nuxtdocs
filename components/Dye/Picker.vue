@@ -18,7 +18,6 @@ const props = withDefaults(defineProps<DyeProps>(), {
   max: 100
 })
 
-
 const emit = defineEmits<{
   (e: 'change', props: OutputColor): void
 }>()
@@ -28,6 +27,12 @@ const theme = useUmbra()
 onMounted(() => {
   const base = theme.formated.find((color) => color.name === 'base')
   const accent = theme.formated.find((color) => color.name === 'accent')
+
+  if (!base || !accent) {
+    throw new Error(
+      'No base or accent color found in the output. Seems the output maybe isnt being generated. Maybe you forgot to apply the umbra function?'
+    )
+  }
 
   const bg = colord(`rgb(${base.background})`).toHex()
   const fg = colord(`rgb(${base.foreground})`).toHex()

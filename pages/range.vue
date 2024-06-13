@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Range from '../components/Range/index.vue'
 import { useUmbra } from '../composables/useUmbra'
-import { umbra, rgb, isDark } from '../core'
 
 const theme = useUmbra()
 
@@ -19,7 +18,7 @@ function inverse() {
   <div class="range">
     <Range :formated="theme.formated[0]" cell-class="rounded-none border-0" />
     <Range :formated="theme.formated[1]" cell-class="rounded-none border-0" />
-    <inverseBtn @change="inverse" />
+    <InverseBtn @change="inverse" />
   </div>
 </template>
 

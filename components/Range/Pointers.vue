@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { OutputColor } from '@umbrajs/dye'
-import { umbra } from '../../core'
 import { colord } from 'colord'
 import { useDye } from '../../dye/composables/useDye'
 
@@ -42,9 +40,9 @@ watch(activeColor, (active) => {
 <template>
   <DyePicker :activeColor="activeColor">
     <div class="flex bg-base-400 border-t-2 border-base-950">
-      <ColorButton color="background" :active="activeColor"/>
-      <ColorButton color="foreground" :active="activeColor"/>
-      <ColorButton color="accents" :active="activeColor"/>
+      <ColorButton color="background" :active="activeColor" />
+      <ColorButton color="foreground" :active="activeColor" />
+      <ColorButton color="accents" :active="activeColor" />
     </div>
   </DyePicker>
 
