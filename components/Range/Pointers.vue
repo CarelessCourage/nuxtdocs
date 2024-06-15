@@ -38,7 +38,7 @@ watch(activeColor, (active) => {
 
 <template>
   <DyePicker :activeColor="activeColor">
-    <div class="flex bg-base-400 border-t-2 border-base-950">
+    <div class="grid grid-cols-[1fr_1fr_1fr_auto] bg-base-400 border-t-2 border-base-950">
       <ColorButton
         color="background"
         :active="activeColor"
@@ -50,6 +50,7 @@ watch(activeColor, (active) => {
         @click="() => (activeColor = 'foreground')"
       />
       <ColorButton color="accents" :active="activeColor" @click="() => (activeColor = 'accents')" />
+      <InverseButton />
     </div>
   </DyePicker>
 

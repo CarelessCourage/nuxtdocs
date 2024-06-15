@@ -53,6 +53,6 @@ function getColors() {
 
 <template>
   <div ref="btn" class="bg-base-50">
-    <Button variant="icon" class="rounded-none text-base-950">{{ color }}</Button>
+    <Button variant="icon" class="rounded-none text-base-950 w-full">{{ color }}</Button>
   </div>
 </template>
