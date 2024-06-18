@@ -24,6 +24,8 @@ interface UseUmbra {
 }
 
 export const useUmbra = defineStore('umbra', () => {
+  const readability = ref(50)
+
   const input = ref<UmbraInput>(themeInput)
   const formated = ref<FormatedRange[]>([])
   const dark = ref<boolean>(true)
@@ -77,6 +79,7 @@ export const useUmbra = defineStore('umbra', () => {
   }
 
   return {
+    readability,
     input,
     formated,
     isDark: dark,

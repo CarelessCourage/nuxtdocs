@@ -34,10 +34,13 @@ watch(activeColor, (active) => {
   if (isFg) dye.setColor(fg, true)
   if (isAc) dye.setColor(ac, true)
 })
+
+const readability = ref(50)
 </script>
 
 <template>
   <DyePicker :activeColor="activeColor">
+    <URange v-model="readability" />
     <div class="grid grid-cols-[1fr_1fr_1fr_auto] bg-base-400 border-t-2 border-base-950">
       <ColorButton
         color="background"
