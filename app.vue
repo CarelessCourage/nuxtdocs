@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="dark">
     <!-- <Header /> -->
 
     <UMain>
@@ -168,7 +168,8 @@ $desktop: 1200px;
   --button-border-active: var(--accent-90);
 }
 
-.dark {
+.dark,
+:root {
   --ui-foreground: var(--base-120);
   --ui-background: var(--base);
 }
