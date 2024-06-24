@@ -18,18 +18,24 @@ interface UseUmbra {
   input: globalThis.Ref<UmbraInput>
   formated: globalThis.Ref<FormatedRange[]>
   isDark: globalThis.Ref<boolean>
+  readability: globalThis.Ref<{ target: number; value: number }>
+  setReadability: (value: number) => { target: number; value: number }
   inverse: () => UmbraOutputs
   change: (scheme: UmbraInput) => Promisify<UmbraOutputs>
   apply: (scheme?: UmbraInput) => UmbraOutputs
 }
 
 export const useUmbra = defineStore('umbra', () => {
-  const readability = ref(50)
+  const readability = ref({
+    target: 50,
+    value: 50
+  })
 
   const input = ref<UmbraInput>(themeInput)
   const formated = ref<FormatedRange[]>([])
   const dark = ref<boolean>(true)
   let settings: UmbraSettings = {
+    readability: readability.value.target,
     formater: rgb
   }
 
@@ -78,11 +84,21 @@ export const useUmbra = defineStore('umbra', () => {
     return store(output)
   }
 
+  function setReadability(value: number) {
+    console.log('setReadability', value)
+    readability.value = {
+      target: value,
+      value: value
+    }
+    return readability.value
+  }
+
   return {
-    readability,
     input,
     formated,
     isDark: dark,
+    readability,
+    setReadability,
     inverse,
     change: (scheme: UmbraInput) => debounced(scheme),
     apply: (scheme?: UmbraInput) => apply(scheme)

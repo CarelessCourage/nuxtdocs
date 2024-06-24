@@ -6,7 +6,7 @@ import { format, hex, rgb } from './engine/primitives/format'
 import type { FlattenColor, Formater, UmbraOutputs } from './engine/primitives/format'
 
 import { attach } from './engine/primitives/attach'
-import { mostReadable, colorMix } from './engine/primitives/color'
+import { mostReadable, getReadability, colorMix } from './engine/primitives/color'
 import type {
   UmbraScheme,
   UmbraInput,
@@ -23,6 +23,7 @@ export {
   umbraHydrate,
   randomScheme,
   mostReadable,
+  getReadability,
   colorMix,
   isDark,
   inverse,
