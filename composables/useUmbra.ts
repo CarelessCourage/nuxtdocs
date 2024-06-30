@@ -26,14 +26,15 @@ interface UseUmbra {
 }
 
 export const useUmbra = defineStore('umbra', () => {
+  const input = ref<UmbraInput>(themeInput)
+  const formated = ref<FormatedRange[]>([])
+  const dark = ref<boolean>(true)
+
   const readability = ref({
     target: 50,
     value: 50
   })
 
-  const input = ref<UmbraInput>(themeInput)
-  const formated = ref<FormatedRange[]>([])
-  const dark = ref<boolean>(true)
   let settings: UmbraSettings = {
     readability: readability.value.target,
     formater: rgb
@@ -62,11 +63,21 @@ export const useUmbra = defineStore('umbra', () => {
   }
 
   function apply(scheme?: UmbraInput) {
-    const theme = umbra({
-      settings: settings, // default settings
+    const schemeInput = {
       ...input.value, // previous input
       ...scheme // new input
+    }
+
+    const schemeSettings = {
+      ...settings, // default settings
+      ...scheme?.settings // new settings
+    }
+
+    const theme = umbra({
+      ...schemeInput,
+      settings: schemeSettings
     })
+
     const output = theme.apply()
     return store(output)
   }
@@ -90,6 +101,10 @@ export const useUmbra = defineStore('umbra', () => {
       target: value,
       value: value
     }
+    const settings = {
+      readability: value
+    }
+    apply({ settings })
     return readability.value
   }
 
