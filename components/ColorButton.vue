@@ -9,7 +9,7 @@ const props = defineProps<{
   active: 'background' | 'foreground' | 'accents'
 }>()
 
-const btn = ref<HTMLButtonElement | null>(null)
+const btn = ref<HTMLElement | null>(null)
 
 watch(
   () => theme.formated,

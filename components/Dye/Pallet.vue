@@ -32,16 +32,9 @@ function handleClick() {
 <template>
   <div class="pallet" :class="{ copied }" @click="handleClick">
     <div class="content">
-      <ProseH2>{{ activeColor }}</ProseH2>
-      <p>{{ dye.color.hex }}</p>
-      <p class="name">{{ dye.color.name }}</p>
-    </div>
-
-    <div class="shade" style="background: var(--base-10)"></div>
-    <div class="shade" style="background: var(--base-20)"></div>
-
-    <div class="cap">
-      <p>{{ copied ? 'copied' : 'copy' }}</p>
+      <ProseH2>{{ dye.color.name }}</ProseH2>
+      <ProseH2>{{ dye.color.hex }}</ProseH2>
+      <UiRange />
     </div>
   </div>
 </template>
@@ -60,8 +53,6 @@ function handleClick() {
 
   background: var(--base);
   color: var(--base-120);
-  user-select: none;
-  cursor: pointer;
   * {
     margin: 0px;
     line-height: 1;
@@ -72,10 +63,9 @@ function handleClick() {
   display: grid;
   padding: var(--space-s);
   gap: var(--space-xs);
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 1fr auto;
   h2 {
     text-transform: capitalize;
-    grid-column: span 2;
   }
   p {
     text-overflow: ellipsis;

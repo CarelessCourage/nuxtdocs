@@ -38,7 +38,6 @@ watch(activeColor, (active) => {
 
 <template>
   <DyePicker :activeColor="activeColor">
-    <UiRange />
     <div class="grid grid-cols-[1fr_1fr_1fr_auto] bg-base-400 border-t-2 border-base-950">
       <ColorButton
         color="background"

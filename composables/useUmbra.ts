@@ -1,7 +1,8 @@
 import { useDebounceFn } from '@vueuse/core'
 import type { Promisify } from '@vueuse/core'
 import type { UmbraInput, FormatedRange, UmbraOutputs, UmbraSettings } from '../core'
-import { umbra, rgb, isDark } from '../core'
+import { umbra, rgb, isDark, getReadability } from '../core'
+import { colord } from 'colord'
 
 const themeInput: UmbraInput = {
   foreground: '#ffffff',
@@ -18,8 +19,8 @@ interface UseUmbra {
   input: globalThis.Ref<UmbraInput>
   formated: globalThis.Ref<FormatedRange[]>
   isDark: globalThis.Ref<boolean>
-  readability: globalThis.Ref<{ target: number; value: number }>
-  setReadability: (value: number) => { target: number; value: number }
+  readability: globalThis.Ref<{ target: number; output: number; input: number }>
+  setReadability: (value: number) => { target: number; output: number; input: number }
   inverse: () => UmbraOutputs
   change: (scheme: UmbraInput) => Promisify<UmbraOutputs>
   apply: (scheme?: UmbraInput) => UmbraOutputs
@@ -32,7 +33,8 @@ export const useUmbra = defineStore('umbra', () => {
 
   const readability = ref({
     target: 50,
-    value: 50
+    input: 50,
+    output: 50
   })
 
   let settings: UmbraSettings = {
@@ -55,6 +57,8 @@ export const useUmbra = defineStore('umbra', () => {
   }
 
   function store(theme: UmbraOutputs) {
+    const targetReadability = settings.readability
+    detectReadability(targetReadability)
     input.value = stringableInput(theme.input)
     settings = theme.input.settings
     formated.value = theme.formated
@@ -95,15 +99,21 @@ export const useUmbra = defineStore('umbra', () => {
     return store(output)
   }
 
+  function detectReadability(target: number) {
+    const base = formated.value.find((item) => item.name === 'base')
+    const inputValue = getReadability(input.value.foreground, input.value.background)
+    if (!base) return
+    const fg = `rgb(${base.foreground})`
+    const bg = `rgb(${base.background})`
+    const outputValue = getReadability(fg, bg)
+    readability.value = { target, input: inputValue, output: outputValue }
+  }
+
   function setReadability(value: number) {
-    console.log('setReadability', value)
-    readability.value = {
-      target: value,
-      value: value
-    }
     const settings = {
       readability: value
     }
+    detectReadability(value)
     apply({ settings })
     return readability.value
   }
